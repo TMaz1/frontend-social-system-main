@@ -1,0 +1,180 @@
+@use "../../styles/variables" as *;
+
+// ========================================
+// Signup information panel
+// ========================================
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 24px;
+
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+
+    padding: 28px;
+    border: 1px solid $border-subtle;
+    border-radius: $radius-premium;
+
+    background: linear-gradient(145deg,
+            rgba(255, 255, 255, 0.035),
+            rgba(255, 255, 255, 0.012));
+
+    @media (max-width: 600px) {
+        gap: 20px;
+        padding: 22px;
+    }
+}
+
+// ========================================
+// Heading
+// ========================================
+
+.info h3 {
+    margin: 0;
+
+    color: $text-primary;
+    font-family: $font-serif;
+    font-size: clamp(25px, 3vw, 32px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+}
+
+// ========================================
+// Feature list
+// ========================================
+
+.points {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        position: relative;
+        padding-left: 23px;
+
+        color: $text-secondary;
+        font-family: $font-sans;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.6;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0.62em;
+            left: 1px;
+
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+
+            background: $accent;
+            box-shadow: 0 0 12px rgba(213, 255, 117, 0.12);
+        }
+    }
+}
+
+// ========================================
+// Supporting description
+// ========================================
+
+.description {
+    margin: 0;
+    padding-top: 20px;
+
+    border-top: 1px solid $border-subtle;
+
+    color: $text-secondary;
+    font-family: $font-sans;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.85;
+
+    text-wrap: pretty;
+}
+
+// ========================================
+// Secondary note
+// ========================================
+
+.subtle {
+    margin: -8px 0 0;
+
+    color: $text-tertiary;
+    font-family: $font-sans;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+// ========================================
+// Reset demo button
+// ========================================
+
+.resetBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+
+    min-height: 40px;
+    margin-top: 0;
+    padding: 10px 15px;
+
+    border: 1px solid $border-strong;
+    border-radius: 999px;
+
+    background: transparent;
+    color: $text-secondary;
+
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+
+    padding: 0 21px;
+
+    &:hover {
+        border-color: $accent;
+        background: rgba(213, 255, 117, 0.06);
+        color: $accent;
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 4px;
+    }
+}
+
+// ========================================
+// Reduced motion
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+    .resetBtn {
+        transition: none;
+    }
+}

@@ -1,0 +1,8 @@
+@use "../../styles/variables" as *;
+.wrapper { display: flex; align-items: center; gap: 3px; padding: 3px; border: 1px solid $border-subtle; border-radius: 999px; background: rgba(255,255,255,.035); }
+.btn { display: grid; place-items: center; width: 27px; height: 27px; padding: 0; border: 0; border-radius: 50%; color: $text-tertiary; background: transparent; cursor: pointer; transition: color .25s ease, background .25s ease, transform .35s $curve-editorial; }
+.btn svg { width: 15px; height: 15px; }
+.btn:hover { color: $text-primary; background: rgba(255,255,255,.07); }
+.btn:active { transform: scale(.93); }
+.active { color: #15160f; background: $accent; }
+.active:hover { color: #15160f; background: $accent; }

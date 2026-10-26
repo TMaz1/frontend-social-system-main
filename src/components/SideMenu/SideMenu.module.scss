@@ -1,0 +1,235 @@
+@use "../../styles/variables" as *;
+
+// ========================================
+// Root and visibility
+// ========================================
+
+.root {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: visibility 280ms ease;
+}
+
+.open {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+// ========================================
+// Backdrop
+// ========================================
+
+.overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(5, 6, 5, 0.58);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+
+    opacity: 0;
+    transition: opacity 280ms ease;
+}
+
+.open .overlay {
+    opacity: 1;
+}
+
+// ========================================
+// Compact side panel
+// ========================================
+
+.menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    width: min(78%, 280px);
+    height: 100%;
+    padding: 22px 18px;
+
+    border-left: 1px solid $border-subtle;
+
+    background: $bg-surface-raised;
+    color: $text-primary;
+
+    box-shadow: -16px 0 48px rgba(0, 0, 0, 0.18);
+
+    transform: translateX(100%);
+    transition: transform 280ms $curve-editorial;
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.open .menu {
+    transform: translateX(0);
+}
+
+// ========================================
+// Close control
+// ========================================
+
+.close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+
+    width: 34px;
+    height: 34px;
+    margin: 0 0 30px;
+    padding: 0;
+
+    border: 1px solid $border-subtle;
+    border-radius: 50%;
+
+    background: transparent;
+    color: $text-tertiary;
+
+    font-size: 17px;
+    cursor: pointer;
+
+    transition:
+        color 160ms ease,
+        border-color 160ms ease,
+        background-color 160ms ease;
+
+    &:hover {
+        border-color: $border-strong;
+        background: rgba(255, 255, 255, 0.035);
+        color: $text-primary;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 3px;
+    }
+}
+
+// ========================================
+// Navigation
+// ========================================
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    a {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+
+        min-height: 42px;
+        padding: 10px 11px;
+
+        border: 1px solid transparent;
+        border-radius: 6px;
+
+        color: $text-secondary;
+
+        font-family: $font-sans;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+
+        transition:
+            color 160ms ease,
+            background-color 160ms ease,
+            border-color 160ms ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.035);
+            color: $text-primary;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $accent;
+            outline-offset: 2px;
+        }
+
+        &:active {
+            background: rgba(255, 255, 255, 0.06);
+        }
+    }
+}
+
+// ========================================
+// Layout controls
+// ========================================
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    margin-top: 26px;
+    padding-top: 20px;
+
+    border-top: 1px solid $border-subtle;
+
+    .sectionLabel {
+        margin: 0;
+        padding: 0 11px;
+
+        color: $text-tertiary;
+
+        font-family: $font-sans;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+    }
+}
+
+// ========================================
+// Small screens
+// ========================================
+
+@media (max-width: 480px) {
+    .menu {
+        width: min(82%, 270px);
+        padding: 18px 15px;
+    }
+
+    .close {
+        margin-bottom: 26px;
+    }
+
+    .links a {
+        min-height: 44px;
+    }
+
+    .section {
+        margin-top: 22px;
+        padding-top: 18px;
+    }
+}
+
+// ========================================
+// Motion accessibility
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+
+    .root,
+    .overlay,
+    .menu,
+    .close,
+    .links a {
+        transition: none;
+    }
+}

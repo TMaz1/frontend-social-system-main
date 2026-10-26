@@ -1,0 +1,203 @@
+@use "../../styles/variables" as *;
+
+// ========================================
+// Shared button styling
+// ========================================
+
+.saveBtn,
+.addBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 38px;
+    padding: 0 15px;
+
+    border: 1px solid $border-strong;
+    border-radius: 8px;
+
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 3px;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+// ========================================
+// Save button
+// ========================================
+
+.saveBtn {
+    background: $bg-surface-raised;
+    color: $text-primary;
+
+    &:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.055);
+        border-color: $border-strong;
+    }
+
+    &.active {
+        background: $accent;
+        color: #171910;
+        border-color: $accent;
+        font-weight: 600;
+
+        &:hover:not(:disabled) {
+            background: $accent;
+            border-color: $accent;
+            box-shadow: 0 0 0 3px rgba(213, 255, 117, 0.09);
+        }
+    }
+}
+
+// ========================================
+// Add to collection
+// ========================================
+
+.addBtn {
+    background: transparent;
+    color: $text-secondary;
+    border-color: $border-subtle;
+
+    &:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.045);
+        border-color: $border-strong;
+        color: $text-primary;
+    }
+}
+
+.back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-height: 36px;
+    padding: 8px 12px;
+    margin-bottom: 20px;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    background: transparent;
+    color: $text-secondary;
+
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease;
+
+    &:hover {
+        color: $text-primary;
+        background: rgba(255, 255, 255, 0.045);
+        border-color: $border-subtle;
+    }
+}
+
+.doneBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 38px;
+    padding: 10px 16px;
+
+    border: 1px solid $accent;
+    border-radius: 9px;
+
+    background: $accent;
+    color: #14150f;
+
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+
+    cursor: pointer;
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        opacity 160ms ease;
+
+    &:hover {
+        background: lighten($accent, 4%);
+        border-color: lighten($accent, 4%);
+    }
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 3px;
+    }
+
+    &:active {
+        opacity: 0.85;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.doneBtn {
+    padding-right: 22px;
+    padding-left: 22px;
+}
+
+
+// ========================================
+// Reduced motion
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+
+    .saveBtn,
+    .addBtn, 
+    .editBtn,
+    .doneBtn,
+    .back {
+        transition: none;
+    }
+
+    .saveBtn:active,
+    .addBtn:active {
+        transform: none;
+    }
+}

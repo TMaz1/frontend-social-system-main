@@ -1,0 +1,24 @@
+.page {
+    padding: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notFound {
+    padding: 40px;
+    font-family: DM Sans, Karla, sans-serif;
+    font-size: 20px;
+}

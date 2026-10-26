@@ -1,0 +1,25 @@
+/* Design tokens: dark editorial canvas with soft, cool undertones. */
+$bg-canvas: #0a0a0c;
+$bg-surface: #111114;
+$bg-surface-raised: #17171b;
+$bg-surface-hover: #202025;
+$text-primary: #f5f3ef;
+$text-secondary: #aaa8b0;
+$text-tertiary: #777680;
+$border-subtle: rgba(255, 255, 255, 0.09);
+$border-strong: rgba(255, 255, 255, 0.15);
+$accent: #d5ff75;
+$black-deep: $bg-canvas;
+$grey-900: $bg-surface;
+$grey-800: $bg-surface-raised;
+$grey-700: #25252b;
+$grey-600: #34343b;
+$grey-300: #85838c;
+$grey-100: #c6c4ca;
+$white-soft: $text-primary;
+$white-muted: $text-secondary;
+$radius-premium: 14px;
+$curve-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+$font-serif: "DM Serif Display", Georgia, serif;
+$font-sans: "DM Sans", "Karla", sans-serif;
+$profile-img-size: 120px;

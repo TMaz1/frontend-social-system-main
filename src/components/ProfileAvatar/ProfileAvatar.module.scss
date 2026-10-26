@@ -1,0 +1,135 @@
+@use "../../styles/variables" as *;
+
+.avatarContainer {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    isolation: isolate;
+}
+
+// Avatar frame
+.avatarWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+    overflow: hidden;
+    isolation: isolate;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Contrasts against the dark profile form
+    background: $bg-surface-raised;
+    border: 1px solid $border-strong;
+    box-sizing: border-box;
+
+    box-shadow:
+        0 0 0 3px $bg-surface,
+        0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+// Profile image
+.avatar {
+    position: absolute;
+    inset: -2px;
+
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+
+    display: block;
+    max-width: none;
+
+    object-fit: cover;
+    object-position: center;
+
+    // Slight zoom hides thin light edges around the image
+    transform: scale(1.06);
+    transition: transform 250ms ease;
+}
+
+// Empty avatar placeholder
+.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle at 35% 25%,
+            rgba(255, 255, 255, 0.07),
+            transparent 65%),
+        $bg-surface-raised;
+
+    color: $text-secondary;
+    font-family: $font-sans;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+}
+
+// Upload / edit action
+.editBadge {
+    position: absolute;
+    right: -3px;
+    bottom: -3px;
+    z-index: 10;
+
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid $bg-surface-raised;
+    border-radius: 50%;
+
+    background: $accent;
+    color: #171910;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.28);
+
+    cursor: pointer;
+    text-decoration: none;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        background-color 180ms ease;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        stroke-width: 2;
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        transform: scale(1.07);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 3px;
+    }
+
+    input {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .avatar,
+    .editBadge {
+        transition: none;
+    }
+}

@@ -1,0 +1,68 @@
+@use "../../styles/variables" as *;
+
+.banner {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    padding: 8px 0;
+
+    background: $grey-800;
+    color: $white-soft;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 3000;
+
+    font-family: $font-sans;
+    font-size: 13px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    p {
+        margin: 0;
+        text-align: center;
+        padding: 0 40px;
+        line-height: 1.4;
+        word-break: break-word;
+    }
+}
+
+.link {
+    font-weight: 600;
+    margin-left: 6px;
+    text-decoration: underline;
+    color: $white-soft;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.close {
+    position: absolute;
+    right: 16px;
+
+    background: none;
+    border: none;
+    color: $white-soft;
+    font-size: 16px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 400px) {
+    .banner p {
+        padding: 0 32px;
+    }
+
+    .close {
+        right: 8px;
+    }
+}

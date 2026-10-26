@@ -1,0 +1,399 @@
+@use "../../styles/variables" as *;
+
+// ========================================
+// Overlay
+// ========================================
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(5, 6, 5, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    animation: overlayEnter 180ms ease-out;
+}
+
+// ========================================
+// Modal surface
+// ========================================
+
+.modal {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 440px;
+    max-height: min(86vh, 700px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    padding: 28px;
+
+    border: 1px solid $border-subtle;
+    border-radius: 14px;
+
+    background: $bg-surface-raised;
+    color: $text-primary;
+
+    box-shadow:
+        0 28px 90px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    animation: modalEnter 220ms $curve-editorial;
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.noBottomSpacing {
+    padding-bottom: 0;
+}
+
+// ========================================
+// Heading
+// ========================================
+
+.heading {
+    margin: 0 0 18px;
+
+    color: $text-primary;
+    font-family: "DM Serif Display", Georgia, serif;
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+}
+
+// ========================================
+// Content and form layout
+// ========================================
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin-bottom: 12px;
+
+    color: $text-secondary;
+    font-family: $font-sans;
+    font-size: 13px;
+    line-height: 1.75;
+
+    >p {
+        margin: 0;
+        color: inherit;
+        font: inherit;
+    }
+
+    // Form labels
+    label {
+        display: block;
+        margin-bottom: 6px;
+
+        color: $text-secondary;
+        font-family: $font-sans;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+
+    // Text fields
+    input:not([type="checkbox"]):not([type="radio"]),
+    textarea,
+    select {
+        display: block;
+
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding: 12px 14px;
+
+        border: 1px solid $border-strong;
+        border-radius: 8px;
+
+        background: $bg-surface;
+        color: $text-primary;
+
+        font-family: $font-sans;
+        font-size: 13px;
+        line-height: 1.6;
+
+        transition:
+            border-color 160ms ease,
+            box-shadow 160ms ease,
+            background-color 160ms ease;
+
+        &::placeholder {
+            color: $text-tertiary;
+            opacity: 1;
+        }
+
+        &:hover:not(:disabled) {
+            border-color: $text-tertiary;
+        }
+
+        &:focus {
+            border-color: $accent;
+            outline: none;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    // Checkbox and radio controls retain their native behavior
+    input[type="checkbox"],
+    input[type="radio"] {
+        accent-color: $accent;
+    }
+
+    // Validation and supporting text
+    small {
+        color: $text-tertiary;
+        font-size: 11px;
+        line-height: 1.6;
+    }
+
+    // Separators inside longer forms
+    hr {
+        width: 100%;
+        margin: 4px 0;
+        border: 0;
+        border-top: 1px solid $border-subtle;
+    }
+}
+
+// ========================================
+// Footer actions
+// ========================================
+
+.modalFooter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin-top: auto;
+    padding-top: 4px;
+}
+
+.singleButton {
+    button {
+        width: 100%;
+    }
+}
+
+.twoButtons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+.threeButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 9px;
+}
+
+.threeButtons button:first-child {
+    flex: 1;
+    min-width: 0;
+}
+
+.rightButtons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+// ========================================
+// Button foundation
+// ========================================
+
+.confirmBtn,
+.cancelBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 40px;
+    padding: 10px 16px;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        color 160ms ease,
+        background-color 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms ease;
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 3px;
+    }
+
+    &:active:not(:disabled) {
+        transform: scale(0.985);
+    }
+
+    &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+// Primary action
+
+.confirmBtn {
+    background: $accent;
+    color: #171910;
+    border-color: $accent;
+
+    &:hover:not(:disabled) {
+        box-shadow: 0 0 0 3px rgba(213, 255, 117, 0.09);
+    }
+}
+
+// Secondary action
+
+.cancelBtn {
+    background: transparent;
+    color: $text-secondary;
+    border-color: $border-strong;
+
+    &:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.04);
+        color: $text-primary;
+        border-color: $text-tertiary;
+    }
+}
+
+// ========================================
+// Entrance animations
+// ========================================
+
+@keyframes overlayEnter {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalEnter {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.99);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+// ========================================
+// Responsive
+// ========================================
+
+@media (max-width: 600px) {
+    .overlay {
+        padding: 14px;
+    }
+
+    .modal {
+        max-width: 100%;
+        max-height: 88vh;
+        padding: 23px 19px;
+        border-radius: 12px;
+    }
+
+    .noBottomSpacing {
+        padding-bottom: 0;
+    }
+
+    .heading {
+        margin-bottom: 15px;
+        font-size: 24px;
+    }
+
+    .content {
+        gap: 14px;
+        margin-bottom: 18px;
+        font-size: 12px;
+    }
+
+    .confirmBtn,
+    .cancelBtn {
+        min-height: 40px;
+        padding: 9px 13px;
+    }
+
+    .modalFooter,
+    .twoButtons,
+    .threeButtons,
+    .rightButtons {
+        gap: 7px;
+    }
+}
+
+// ========================================
+// Reduced motion
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+
+    .overlay,
+    .modal {
+        animation: none;
+    }
+
+    .content input,
+    .content textarea,
+    .content select,
+    .confirmBtn,
+    .cancelBtn {
+        transition: none;
+    }
+
+    .confirmBtn:active,
+    .cancelBtn:active {
+        transform: none;
+    }
+}

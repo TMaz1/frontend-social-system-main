@@ -1,0 +1,14 @@
+@use "../../styles/variables" as *;
+
+.page {
+    padding: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@media (max-width: 600px) {
+    .page {
+        padding: 22px;
+    }
+}

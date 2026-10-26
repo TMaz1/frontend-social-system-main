@@ -1,0 +1,215 @@
+@use "../../styles/variables" as *;
+
+.header {
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    padding: 30px var(--page-gutter, 24px) 24px;
+
+    border-bottom: 1px solid $border-subtle;
+}
+
+.identity {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    min-width: 0;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    gap: 5px;
+}
+
+.eyebrow {
+    color: $text-tertiary;
+    font-family: $font-sans;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.title {
+    margin: 0;
+
+    color: $text-primary;
+    font-family: "DM Serif Display", Georgia, serif;
+    font-size: clamp(27px, 3.2vw, 38px);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+
+    overflow-wrap: anywhere;
+}
+
+.bio {
+    max-width: 480px;
+    margin: 3px 0 0;
+
+    color: $text-secondary;
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.7;
+
+    overflow-wrap: anywhere;
+}
+
+.emptyBio {
+    color: $text-tertiary;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-left: 0;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.addBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 34px;
+    padding: 8px 15px;
+    box-sizing: border-box;
+
+    border: 1px solid $border-strong;
+    border-radius: 7px;
+
+    background: transparent;
+    color: $text-primary;
+
+    font-family: $font-sans;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.015em;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 160ms ease,
+        color 160ms ease,
+        border-color 160ms ease;
+
+    &:hover {
+        background: $accent;
+        color: #171910;
+        border-color: $accent;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 3px;
+    }
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    // Accommodate links rendered by SocialMediaLinks.
+    a {
+        color: $text-tertiary;
+        text-decoration: none;
+        transition: color 160ms ease;
+
+        &:hover {
+            color: $accent;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $accent;
+            outline-offset: 3px;
+            border-radius: 3px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        gap: 18px;
+        padding: 24px 18px 20px;
+    }
+
+    .identity {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .text {
+        padding-top: 5px;
+    }
+
+    .title {
+        font-size: clamp(24px, 7vw, 32px);
+    }
+
+    .bio {
+        font-size: 11px;
+        line-height: 1.65;
+    }
+
+    .footer {
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .addBtn {
+        min-height: 33px;
+        padding: 8px 12px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .header {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .identity {
+        gap: 12px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .addBtn,
+    .socials a {
+        transition: none;
+    }
+}
