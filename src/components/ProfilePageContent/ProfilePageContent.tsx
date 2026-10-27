@@ -151,7 +151,7 @@ const ProfilePageContent: React.FC<Props> = ({
                 bio={user.profileBio ?? ""}
                 profileImage={user.profileImageUrl ?? ""}
                 links={user.links ?? {}}
-                share={`https://app.com/profile/${user.username}`}
+                share={`${window.location.origin}/profile/${encodeURIComponent(user.username)}`}
                 isOwnProfile={isOwnProfile}
             />
 

@@ -1,9 +1,20 @@
 import React from "react";
-import { FiInstagram, FiYoutube, FiTwitter, FiShare2, FiGlobe } from "react-icons/fi";
-import { FaTiktok, FaPinterestP, FaTwitch } from "react-icons/fa";
+import {
+    FiInstagram,
+    FiYoutube,
+    FiTwitter,
+    FiShare2,
+    FiGlobe,
+} from "react-icons/fi";
+import {
+    FaTiktok,
+    FaPinterestP,
+    FaTwitch,
+} from "react-icons/fa";
 
 import styles from "./SocialMediaLinks.module.scss";
 import type { Links } from "../../services/localDataService";
+import { useShare } from "../../hooks/useShare";
 
 interface Props {
     links: Links;
@@ -17,22 +28,31 @@ const iconMap = {
     tiktok: <FaTiktok />,
     pinterest: <FaPinterestP />,
     twitch: <FaTwitch />,
-    website: <FiGlobe />
+    website: <FiGlobe />,
 } as const;
 
-const SocialMediaLinks: React.FC<Props> = ({ links, share }) => {
+const SocialMediaLinks: React.FC<Props> = ({ links, share: shareUrl }) => {
     const platforms = Object.keys(iconMap) as Array<keyof typeof iconMap>;
+    const { share, status } = useShare();
 
     const normaliseUrl = (url: string) => {
         if (!url) return "";
 
-        // If already absolute, return as-is
         if (/^https?:\/\//i.test(url)) {
             return url;
         }
 
-        // Otherwise, prepend https://
         return `https://${url}`;
+    };
+
+    const handleShare = () => {
+        if (!shareUrl) return;
+
+        void share({
+            url: shareUrl,
+            title: "Check out this profile",
+            text: "Take a look at this profile.",
+        });
     };
 
     return (
@@ -40,25 +60,44 @@ const SocialMediaLinks: React.FC<Props> = ({ links, share }) => {
             {platforms.map((platform) => {
                 const url = links[platform];
 
-                if (url) {
-                    return (
-                        <a
-                            key={platform}
-                            href={normaliseUrl(url)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            {iconMap[platform]}
-                        </a>
-                    );
-                }
-                return null;
+                if (!url) return null;
+
+                return (
+                    <a
+                        key={platform}
+                        href={normaliseUrl(url)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={platform}
+                        title={platform}
+                    >
+                        {iconMap[platform]}
+                    </a>
+                );
             })}
 
-            {share && (
-                <a href={share} target="_blank" rel="noopener noreferrer">
+            {shareUrl && (
+                <button
+                    type="button"
+                    className={styles.shareButton}
+                    onClick={handleShare}
+                    aria-label="Share profile"
+                    title="Share profile"
+                >
                     <FiShare2 />
-                </a>
+                </button>
+            )}
+
+            {status === "copied" && (
+                <span role="status" className={styles.shareStatus}>
+                    Link copied!
+                </span>
+            )}
+
+            {status === "error" && (
+                <span role="status" className={styles.shareStatus}>
+                    Couldn't share the link.
+                </span>
             )}
         </div>
     );
