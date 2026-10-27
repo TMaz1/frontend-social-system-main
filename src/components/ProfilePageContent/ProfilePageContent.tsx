@@ -4,20 +4,27 @@ import buttonStyles from "../../components/Button/Button.module.scss";
 
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import DraggableCardGrid from "../../components/DraggableCardGrid/DraggableCardGrid";
-import NavbarCollections, { type CollectionTab } from "../../components/NavbarCollections/NavbarCollections";
+import NavbarCollections, {
+    type CollectionTab,
+} from "../../components/NavbarCollections/NavbarCollections";
 
 import { type User } from "../../services/localDataService";
 import CollectionModal from "../../components/AddToCollectionModal/CollectionModal";
+
 import { useReorderContext } from "../../context/ReorderContext";
 import { useUserCollections } from "../../hooks/collections/useUserCollections";
 import InlineLoader from "../Loader/InlineLoader/InlineLoader";
+import DeleteCollectionModal from "../DeleteCollectionModal/DeleteCollectionModal";
 
 interface Props {
     user: User;
     isOwnProfile: boolean;
 }
 
-const ProfilePageContent: React.FC<Props> = ({ user, isOwnProfile }) => {
+const ProfilePageContent: React.FC<Props> = ({
+    user,
+    isOwnProfile,
+}) => {
     const {
         isLoading,
         collections,
@@ -35,18 +42,33 @@ const ProfilePageContent: React.FC<Props> = ({ user, isOwnProfile }) => {
         initialDescription?: string;
     }>(null);
 
-    const [selectedCollection, setSelectedCollection] = useState("uploaded");
-    const { reorderMode, beginReorder, endReorder, triggerExitModal } = useReorderContext();
+    const [collectionToDelete, setCollectionToDelete] =
+        useState<CollectionTab | null>(null);
+
+    const [selectedCollection, setSelectedCollection] =
+        useState("uploaded");
+
+    const {
+        reorderMode,
+        beginReorder,
+        endReorder,
+        triggerExitModal,
+    } = useReorderContext();
 
     useEffect(() => {
-        if (reorderMode) endReorder();
+        if (reorderMode) {
+            endReorder();
+        }
     }, [selectedCollection]);
 
-    const currentDescription = isLoading ? "" : getCollectionDescription(selectedCollection);
+    const currentDescription = isLoading
+        ? ""
+        : getCollectionDescription(selectedCollection);
 
     // =========================
-    // HANDLERS
+    // COLLECTION HANDLERS
     // =========================
+
     const handleCollectionReorder = useCallback(
         (newOrder: CollectionTab[]) => {
             reorderCollections(newOrder);
@@ -54,18 +76,37 @@ const ProfilePageContent: React.FC<Props> = ({ user, isOwnProfile }) => {
         [reorderCollections]
     );
 
-    // only allow reordering collection for own account
+    // Only allow reordering collections on your own profile.
     const requestCollectionReorder = () => {
         if (!isOwnProfile) return;
         beginReorder();
     };
 
+    // Open confirmation instead of deleting immediately.
     const handleCollectionDelete = (col: CollectionTab) => {
-        deleteCollection(col.id);
+        if (!isOwnProfile) return;
+        if (col.id === "uploaded" || col.id === "saved") return;
 
-        if (selectedCollection === col.id) {
+        setCollectionToDelete(col);
+    };
+
+    // Delete only after the user confirms.
+    const handleConfirmDelete = () => {
+        if (!collectionToDelete) return;
+
+        const collectionId = collectionToDelete.id;
+
+        deleteCollection(collectionId);
+
+        if (selectedCollection === collectionId) {
             setSelectedCollection("uploaded");
         }
+
+        setCollectionToDelete(null);
+    };
+
+    const handleCancelDelete = () => {
+        setCollectionToDelete(null);
     };
 
     const handleCollectionAdd = () => {
@@ -77,16 +118,22 @@ const ProfilePageContent: React.FC<Props> = ({ user, isOwnProfile }) => {
             mode: "edit",
             collectionId: col.id,
             initialTitle: col.title ?? "",
-            initialDescription: col.description ?? ""
+            initialDescription: col.description ?? "",
         });
     };
 
-    const handleModalConfirm = (title: string, description: string) => {
+    const handleModalConfirm = (
+        title: string,
+        description: string
+    ) => {
         if (!modalState) return;
 
         if (modalState.mode === "create") {
             createCollection(title, description);
-        } else if (modalState.mode === "edit" && modalState.collectionId) {
+        } else if (
+            modalState.mode === "edit" &&
+            modalState.collectionId
+        ) {
             updateCollection(
                 modalState.collectionId,
                 title,
@@ -98,7 +145,6 @@ const ProfilePageContent: React.FC<Props> = ({ user, isOwnProfile }) => {
     };
 
     return (
-
         <div className={styles.container}>
             <ProfileHeader
                 name={user.profileName ?? ""}
@@ -118,7 +164,9 @@ const ProfilePageContent: React.FC<Props> = ({ user, isOwnProfile }) => {
                             selected={selectedCollection}
                             onSelect={(newCol) => {
                                 if (reorderMode) {
-                                    triggerExitModal(() => setSelectedCollection(newCol));
+                                    triggerExitModal(() =>
+                                        setSelectedCollection(newCol)
+                                    );
                                 } else {
                                     setSelectedCollection(newCol);
                                 }
@@ -127,49 +175,60 @@ const ProfilePageContent: React.FC<Props> = ({ user, isOwnProfile }) => {
                             reorderMode={reorderMode && isOwnProfile}
                             onReorder={handleCollectionReorder}
                             onReorderRequest={requestCollectionReorder}
-                            onDelete={(col) => {
-                                if (!isOwnProfile) return;
-                                if (col.id === "uploaded" || col.id === "saved") return;
-
-                                handleCollectionDelete(col);
-                            }}
+                            onDelete={handleCollectionDelete}
                             onAddNew={handleCollectionAdd}
                             onEdit={handleEditCollection}
                             isOwnProfile={isOwnProfile}
                         />
                     </div>
 
+                    {/* Existing create/edit modal */}
                     {modalState && (
                         <CollectionModal
                             mode={modalState.mode}
                             initialTitle={modalState.initialTitle}
-                            initialDescription={modalState.initialDescription}
+                            initialDescription={
+                                modalState.initialDescription
+                            }
                             onCancel={() => setModalState(null)}
                             onConfirm={handleModalConfirm}
                         />
                     )}
 
-                    {selectedCollection !== "uploaded" && selectedCollection !== "saved" && (
-                        <div
-                            className={`${styles.collectionHeaderRow} ${reorderMode ? styles.reordering : ""
-                                }`}
-                        >
-                            {currentDescription && (
-                                <div className={styles.collectionDescription}>
-                                    {currentDescription}
-                                </div>
-                            )}
+                    {/* Delete confirmation modal */}
+                    <DeleteCollectionModal
+                        collection={collectionToDelete}
+                        onCancel={handleCancelDelete}
+                        onConfirm={handleConfirmDelete}
+                    />
 
-                            {reorderMode && (
-                                <button
-                                    className={buttonStyles.doneBtn}
-                                    onClick={endReorder}
-                                >
-                                    Done
-                                </button>
-                            )}
-                        </div>
-                    )}
+                    {selectedCollection !== "uploaded" &&
+                        selectedCollection !== "saved" && (
+                            <div
+                                className={`${styles.collectionHeaderRow} ${reorderMode ? styles.reordering : ""
+                                    }`}
+                            >
+                                {currentDescription && (
+                                    <div
+                                        className={
+                                            styles.collectionDescription
+                                        }
+                                    >
+                                        {currentDescription}
+                                    </div>
+                                )}
+
+                                {reorderMode && (
+                                    <button
+                                        type="button"
+                                        className={buttonStyles.doneBtn}
+                                        onClick={endReorder}
+                                    >
+                                        Done
+                                    </button>
+                                )}
+                            </div>
+                        )}
 
                     <DraggableCardGrid
                         userId={user.userId}

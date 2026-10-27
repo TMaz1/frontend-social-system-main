@@ -28,7 +28,8 @@ export default function LayoutSwitcher() {
                     >
                         <Icon
                             variant={active ? "filled" : "outline"}
-                            strokeWidth={1}
+                            size={30}
+                            strokeWidth={2}
                             title={id}
                         />
                     </button>
