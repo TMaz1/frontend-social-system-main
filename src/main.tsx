@@ -7,13 +7,13 @@ import { CardProvider } from './context/CardContext';
 import { LayoutProvider } from './context/LayoutContext';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <AuthProvider>
-      <CardProvider>
-        <LayoutProvider>
-          <App />
-        </LayoutProvider>
-      </CardProvider>
-    </AuthProvider>
-  </React.StrictMode>,
+	<React.StrictMode>
+		<AuthProvider>
+			<CardProvider>
+				<LayoutProvider>
+					<App />
+				</LayoutProvider>
+			</CardProvider>
+		</AuthProvider>
+	</React.StrictMode>,
 );

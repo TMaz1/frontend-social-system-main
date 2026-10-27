@@ -37,7 +37,7 @@ const AddToCollectionModal: React.FC<Props> = ({
                 onClose={onClose}
                 content={
                     <div
-                        className={ `${styles.contentWrapper} ${styles.centered}`}
+                        className={`${styles.contentWrapper} ${styles.centered}`}
                     >
                         <div className={styles.list}>
                             {collections.map((c) => (

@@ -7,7 +7,6 @@ import type { CardProps } from "../../components/Card/Card";
 import SearchSuggestions from "./SearchSuggestions";
 import { useLocation } from "react-router-dom";
 
-
 interface Props {
     mobile?: boolean;
     overlay?: boolean;

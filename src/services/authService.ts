@@ -16,7 +16,7 @@ export const authService = {
         const savedCards = localDataService.getSavedCardsByUserId(user.userId); // cards saved in collections
 
         const token = btoa(`${user.userId}:${Date.now()}`);
-        
+
         return {
             success: true,
             data: {

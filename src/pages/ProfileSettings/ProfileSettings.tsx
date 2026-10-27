@@ -6,8 +6,8 @@ import buttonStyles from "../../components/Button/Button.module.scss";
 
 const ProfileSettings: React.FC = () => {
     const navigate = useNavigate();
-    
-     return (
+
+    return (
         <div className={styles.page}>
             <button className={buttonStyles.back} onClick={() => navigate(-1)}>
                 ← Back

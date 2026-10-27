@@ -22,7 +22,7 @@ const DeleteCollectionModal: React.FC<DeleteCollectionModalProps> = ({
                 <>
                     <p>
                         Are you sure you want to delete{" "}
-                        <strong>{collection?.title}</strong>? <br/>
+                        <strong>{collection?.title}</strong>? <br />
                         This action cannot be undone.
                     </p>
                 </>

@@ -3,10 +3,8 @@ import { LOCAL_KEYS } from "./localDataService";
 const MIGRATION_KEY = "app_schema_version";
 const CURRENT_VERSION = 2;
 
-/**
- * Runs once on startup before init().
- * Ensures old/broken localStorage structures are upgraded.
- */
+// Runs once on startup before init().
+// Ensures old/broken localStorage structures are upgraded.
 export function runMigrations() {
     const version = Number(localStorage.getItem(MIGRATION_KEY) || "0");
 
@@ -33,10 +31,7 @@ export function runMigrations() {
     }
 }
 
-/**
- * Migration #1
- * Fix legacy collection format: { name: "Portraits" } → { title: "Portraits" }
- */
+// Migration #1: Fix legacy collection format: { name: "Portraits" } → { title: "Portraits" }
 function migrateFromLegacySchema() {
     const collectionsRaw = localStorage.getItem(LOCAL_KEYS.collections);
     if (!collectionsRaw) return;
@@ -60,10 +55,7 @@ function migrateFromLegacySchema() {
     }
 }
 
-/**
- * Migration #2
- * Fix old userIds such as user_001 → user_000001
- */
+// Migration #2: Fix old userIds such as user_001 → user_000001
 function migrateUserIdPadding() {
     const fix = (id: string) =>
         /^user_\d+$/.test(id)

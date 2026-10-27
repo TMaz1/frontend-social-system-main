@@ -19,7 +19,7 @@ const NoSearch: React.FC = () => {
             <FiSearch className={styles.icon} />
 
             <h3 className={styles.title}>Ready to Explore?</h3>
-            
+
             <p className={styles.subtitle}>
                 Type something in the search bar to find cards
             </p>

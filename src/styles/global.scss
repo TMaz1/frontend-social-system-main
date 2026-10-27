@@ -2,43 +2,93 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap");
 
 :root {
-  font-family: $font-sans;
-  color: $text-primary;
-  background: $bg-canvas;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color-scheme: dark;
-  font-optical-sizing: auto;
-  --page-gutter: clamp(18px, 4.5vw, 76px);
+	font-family: $font-sans;
+	color: $text-primary;
+	background: $bg-canvas;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color-scheme: dark;
+	font-optical-sizing: auto;
+	--page-gutter: clamp(18px, 4.5vw, 76px);
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-html { min-width: 320px; scroll-behavior: smooth; background: $bg-canvas; }
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background:
-    radial-gradient(ellipse at 50% -30%, rgba(102, 102, 145, 0.11), transparent 52%),
-    $bg-canvas;
-  color: $text-primary;
-  font-family: $font-sans;
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }
-body, button, input, textarea, select { font-family: $font-sans; }
-button, input, textarea, select { font-size: inherit; }
-button { color: inherit; }
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
-::selection { background: rgba(213, 255, 117, .25); color: $text-primary; }
-#root { width: 100%; min-height: 100vh; overflow-x: clip; }
-main { min-width: 0; }
+
+html {
+	min-width: 320px;
+	scroll-behavior: smooth;
+	background: $bg-canvas;
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+	min-height: 100vh;
+	background:
+		radial-gradient(ellipse at 50% -30%, rgba(102, 102, 145, 0.11), transparent 52%),
+		$bg-canvas;
+	color: $text-primary;
+	font-family: $font-sans;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+	font-family: $font-sans;
+}
+
+button,
+input,
+textarea,
+select {
+	font-size: inherit;
+}
+
+button {
+	color: inherit;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+::selection {
+	background: rgba(213, 255, 117, .25);
+	color: $text-primary;
+}
+
+#root {
+	width: 100%;
+	min-height: 100vh;
+	overflow-x: clip;
+}
+
+main {
+	min-width: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
+
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		animation-duration: .01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: .01ms !important;
+	}
 }

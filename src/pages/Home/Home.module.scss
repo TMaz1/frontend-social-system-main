@@ -1,475 +1,475 @@
 @use "../../styles/variables" as *;
 
 .home {
-  width: 100%;
-  overflow: hidden;
+	width: 100%;
+	overflow: hidden;
 }
 
 .hero {
-  padding-top: 76px;
-  padding-bottom: 58px;
+	padding-top: 76px;
+	padding-bottom: 58px;
 }
 
 .heroContent {
-  width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+	width: 100%;
+	max-width: 760px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
 }
 
 .hero h1 {
-  margin: 0;
-  font-size: clamp(48px, 6.2vw, 88px);
-  line-height: .98;
-  letter-spacing: -.075em;
-  font-weight: 500;
-  max-width: 760px;
+	margin: 0;
+	font-size: clamp(48px, 6.2vw, 88px);
+	line-height: .98;
+	letter-spacing: -.075em;
+	font-weight: 500;
+	max-width: 760px;
 }
 
 .hero h1 em,
 .sectionHeading h2 em,
 .manifesto h2 em {
-  font-family: $font-serif;
-  font-weight: 400;
-  letter-spacing: -.055em;
+	font-family: $font-serif;
+	font-weight: 400;
+	letter-spacing: -.055em;
 }
 
 .hero h1 em {
-  color: $accent;
+	color: $accent;
 }
 
 .intro {
-  max-width: 460px;
-  color: $text-secondary;
-  font-size: clamp(14px, 1.15vw, 16px);
-  line-height: 1.8;
-  margin: 22px 0 26px;
-  text-wrap: pretty;
-  text-align: center;
+	max-width: 460px;
+	color: $text-secondary;
+	font-size: clamp(14px, 1.15vw, 16px);
+	line-height: 1.8;
+	margin: 22px 0 26px;
+	text-wrap: pretty;
+	text-align: center;
 }
 
 .actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 16px;
 }
 
 .primaryAction {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  background: $accent;
-  color: #14150f;
-  padding: 13px 17px 13px 21px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 700;
-  transition:
-    transform .25s $curve-editorial,
-    box-shadow .25s $curve-editorial;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 18px;
+	background: $accent;
+	color: #14150f;
+	padding: 13px 17px 13px 21px;
+	border: 1px solid transparent;
+	border-radius: 999px;
+	font-size: 13px;
+	font-weight: 700;
+	transition:
+		transform .25s $curve-editorial,
+		box-shadow .25s $curve-editorial;
 }
 
 .primaryAction:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(213, 255, 117, .12);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 24px rgba(213, 255, 117, .12);
 }
 
 .primaryAction:focus-visible,
 .textLink:focus-visible,
 .previewImage:focus-visible {
-  outline: 2px solid $accent;
-  outline-offset: 4px;
+	outline: 2px solid $accent;
+	outline-offset: 4px;
 }
 
 .heroMeta {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px 24px;
-  margin-top: 34px;
-  color: $text-tertiary;
-  font-size: 10px;
-  letter-spacing: .025em;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px 24px;
+	margin-top: 34px;
+	color: $text-tertiary;
+	font-size: 10px;
+	letter-spacing: .025em;
 }
 
 .heroMeta span+span::before {
-  content: "/";
-  margin-right: 24px;
-  color: $border-strong;
+	content: "/";
+	margin-right: 24px;
+	color: $border-strong;
 }
 
 .actionNote {
-  color: $text-tertiary;
-  font-size: 11px;
+	color: $text-tertiary;
+	font-size: 11px;
 }
 
 .heroIndex {
-  position: absolute;
-  bottom: 28px;
-  left: var(--page-gutter);
-  right: var(--page-gutter);
-  display: flex;
-  justify-content: space-between;
-  padding-top: 15px;
-  border-top: 1px solid $border-subtle;
-  color: $text-tertiary;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  font-size: 9px;
+	position: absolute;
+	bottom: 28px;
+	left: var(--page-gutter);
+	right: var(--page-gutter);
+	display: flex;
+	justify-content: space-between;
+	padding-top: 15px;
+	border-top: 1px solid $border-subtle;
+	color: $text-tertiary;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+	font-size: 9px;
 }
 
 .previewSection,
 .manifesto {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 100px var(--page-gutter);
+	max-width: 1600px;
+	margin: 0 auto;
+	padding: 100px var(--page-gutter);
 }
 
 .sectionHeading {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 34px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 24px;
+	margin-bottom: 34px;
 }
 
 .sectionHeading h2,
 .manifesto h2 {
-  font-size: clamp(32px, 4vw, 56px);
-  font-weight: 500;
-  letter-spacing: -.06em;
-  line-height: 1;
-  margin: 14px 0 0;
+	font-size: clamp(32px, 4vw, 56px);
+	font-weight: 500;
+	letter-spacing: -.06em;
+	line-height: 1;
+	margin: 14px 0 0;
 }
 
 .sectionHeading h2 em {
-  color: $text-secondary;
+	color: $text-secondary;
 }
 
 .textLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  color: $text-secondary;
-  padding-bottom: 5px;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 12px;
+	color: $text-secondary;
+	padding-bottom: 5px;
 }
 
 .textLink:hover {
-  color: $accent;
+	color: $accent;
 }
 
 .previewGrid {
-  display: grid;
-  grid-template-columns: minmax(190px, .72fr) minmax(0, 1.7fr) minmax(180px, .7fr);
-  gap: 16px;
-  align-items: stretch;
+	display: grid;
+	grid-template-columns: minmax(190px, .72fr) minmax(0, 1.7fr) minmax(180px, .7fr);
+	gap: 16px;
+	align-items: stretch;
 }
 
 .previewIntro,
 .previewNote {
-  border: 1px solid $border-subtle;
-  background: linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .012));
-  border-radius: $radius-premium;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+	border: 1px solid $border-subtle;
+	background: linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .012));
+	border-radius: $radius-premium;
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .previewIcon {
-  width: 42px;
-  height: 42px;
-  border: 1px solid $border-subtle;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  color: $accent;
-  margin-bottom: auto;
+	width: 42px;
+	height: 42px;
+	border: 1px solid $border-subtle;
+	border-radius: 12px;
+	display: grid;
+	place-items: center;
+	color: $accent;
+	margin-bottom: auto;
 }
 
 .previewIntro h3 {
-  font-size: 23px;
-  line-height: 1.12;
-  letter-spacing: -.045em;
-  font-weight: 500;
-  margin: 13px 0;
+	font-size: 23px;
+	line-height: 1.12;
+	letter-spacing: -.045em;
+	font-weight: 500;
+	margin: 13px 0;
 }
 
 .previewIntro p,
 .previewNote p {
-  font-size: 12px;
-  color: $text-secondary;
-  line-height: 1.7;
-  margin: 0;
+	font-size: 12px;
+	color: $text-secondary;
+	line-height: 1.7;
+	margin: 0;
 }
 
 .imageMosaic {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 10px;
-  min-height: 370px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	gap: 10px;
+	min-height: 370px;
 }
 
 .previewImage {
-  position: relative;
-  min-height: 150px;
-  overflow: hidden;
-  border-radius: 11px;
-  // background: $bg-surface-raised;
+	position: relative;
+	min-height: 150px;
+	overflow: hidden;
+	border-radius: 11px;
+	// background: $bg-surface-raised;
 }
 
 .previewImage img {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-  object-fit: cover;
-  transition: transform .7s $curve-editorial;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	inset: 0;
+	object-fit: cover;
+	transition: transform .7s $curve-editorial;
 }
 
 .previewImage:hover img {
-  transform: scale(1.045);
+	transform: scale(1.045);
 }
 
 .previewImage::after {
-  content: "";
-  position: absolute;
-  inset: 35% 0 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, .65));
+	content: "";
+	position: absolute;
+	inset: 35% 0 0;
+	background: linear-gradient(transparent, rgba(0, 0, 0, .65));
 }
 
 .previewImage span {
-  position: absolute;
-  z-index: 1;
-  bottom: 13px;
-  left: 14px;
-  right: 12px;
-  font-size: 11px;
-  font-weight: 500;
+	position: absolute;
+	z-index: 1;
+	bottom: 13px;
+	left: 14px;
+	right: 12px;
+	font-size: 11px;
+	font-weight: 500;
 }
 
 .image1 {
-  grid-row: span 2;
+	grid-row: span 2;
 }
 
 .image2 {
-  min-height: 0;
+	min-height: 0;
 }
 
 .image3 {
-  min-height: 0;
+	min-height: 0;
 }
 
 .image4 {
-  display: none;
+	display: none;
 }
 
 .previewImage:nth-child(n+4) {
-  display: none;
+	display: none;
 }
 
 .previewFallback {
-  grid-column: 1 / -1;
-  border: 1px dashed $border-strong;
-  border-radius: $radius-premium;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  color: $text-secondary;
+	grid-column: 1 / -1;
+	border: 1px dashed $border-strong;
+	border-radius: $radius-premium;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 14px;
+	color: $text-secondary;
 }
 
 .previewNote>svg {
-  color: $accent;
-  font-size: 22px;
-  margin-bottom: 28px;
+	color: $accent;
+	font-size: 22px;
+	margin-bottom: 28px;
 }
 
 .previewNote a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: auto;
-  padding-top: 28px;
-  color: $text-primary;
-  font-size: 11px;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: auto;
+	padding-top: 28px;
+	color: $text-primary;
+	font-size: 11px;
 }
 
 .previewNote a:hover {
-  color: $accent;
+	color: $accent;
 }
 
 .manifesto {
-  border-top: 1px solid $border-subtle;
-  display: grid;
-  grid-template-columns: .8fr 1.2fr;
-  gap: 8vw;
-  padding-top: 78px;
-  padding-bottom: 100px;
+	border-top: 1px solid $border-subtle;
+	display: grid;
+	grid-template-columns: .8fr 1.2fr;
+	gap: 8vw;
+	padding-top: 78px;
+	padding-bottom: 100px;
 }
 
 .manifesto h2 {
-  margin-top: 20px;
-  font-size: clamp(44px, 6vw, 78px);
+	margin-top: 20px;
+	font-size: clamp(44px, 6vw, 78px);
 }
 
 .manifesto h2 em {
-  color: $accent;
+	color: $accent;
 }
 
 .specGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  align-self: end;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 22px;
+	align-self: end;
 }
 
 .specGrid article {
-  border-top: 1px solid $border-strong;
-  padding-top: 15px;
+	border-top: 1px solid $border-strong;
+	padding-top: 15px;
 }
 
 .specGrid article>span {
-  color: $text-tertiary;
-  font-size: 10px;
+	color: $text-tertiary;
+	font-size: 10px;
 }
 
 .specGrid h3 {
-  font-size: 13px;
-  font-weight: 600;
-  margin: 22px 0 10px;
+	font-size: 13px;
+	font-weight: 600;
+	margin: 22px 0 10px;
 }
 
 .specGrid p {
-  color: $text-secondary;
-  font-size: 11px;
-  line-height: 1.7;
-  margin: 0;
+	color: $text-secondary;
+	font-size: 11px;
+	line-height: 1.7;
+	margin: 0;
 }
 
 @media (max-width: 900px) {
-  .hero h1 {
-    font-size: clamp(48px, 8vw, 70px);
-  }
+	.hero h1 {
+		font-size: clamp(48px, 8vw, 70px);
+	}
 
-  .previewGrid {
-    grid-template-columns: 1fr 1.5fr;
-  }
+	.previewGrid {
+		grid-template-columns: 1fr 1.5fr;
+	}
 
-  .previewNote {
-    grid-column: 1 / -1;
-    min-height: 170px;
-  }
+	.previewNote {
+		grid-column: 1 / -1;
+		min-height: 170px;
+	}
 
-  .previewNote>svg {
-    margin-bottom: 14px;
-  }
+	.previewNote>svg {
+		margin-bottom: 14px;
+	}
 
-  .previewNote a {
-    padding-top: 18px;
-  }
+	.previewNote a {
+		padding-top: 18px;
+	}
 
-  .manifesto {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
+	.manifesto {
+		grid-template-columns: 1fr;
+		gap: 48px;
+	}
 }
 
 @media (max-width: 600px) {
-  .hero {
-    padding-top: 64px;
-    padding-bottom: 44px;
-  }
+	.hero {
+		padding-top: 64px;
+		padding-bottom: 44px;
+	}
 
-  .heroContent {
-    max-width: 100%;
-  }
+	.heroContent {
+		max-width: 100%;
+	}
 
-  .hero h1 {
-    font-size: clamp(44px, 12vw, 64px);
-    line-height: 1;
-    text-align: center;
-  }
+	.hero h1 {
+		font-size: clamp(44px, 12vw, 64px);
+		line-height: 1;
+		text-align: center;
+	}
 
-  .intro {
-    max-width: 360px;
-    margin: 18px 0 24px;
-    font-size: 14px;
-    line-height: 1.75;
-  }
+	.intro {
+		max-width: 360px;
+		margin: 18px 0 24px;
+		font-size: 14px;
+		line-height: 1.75;
+	}
 
-  .primaryAction {
-    min-height: 44px;
-  }
+	.primaryAction {
+		min-height: 44px;
+	}
 
-  .heroMeta {
-    margin-top: 26px;
-    gap: 8px 12px;
-    font-size: 9px;
-  }
+	.heroMeta {
+		margin-top: 26px;
+		gap: 8px 12px;
+		font-size: 9px;
+	}
 
-  .heroMeta span+span::before {
-    margin-right: 12px;
-  }
+	.heroMeta span+span::before {
+		margin-right: 12px;
+	}
 
-  .heroIndex span:last-child {
-    max-width: 145px;
-    text-align: right;
-  }
+	.heroIndex span:last-child {
+		max-width: 145px;
+		text-align: right;
+	}
 
-  .previewSection,
-  .manifesto {
-    padding-top: 68px;
-    padding-bottom: 68px;
-  }
+	.previewSection,
+	.manifesto {
+		padding-top: 68px;
+		padding-bottom: 68px;
+	}
 
-  .sectionHeading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
+	.sectionHeading {
+		align-items: flex-start;
+		flex-direction: column;
+	}
 
-  .previewGrid {
-    grid-template-columns: 1fr;
-  }
+	.previewGrid {
+		grid-template-columns: 1fr;
+	}
 
-  .previewIntro {
-    min-height: 250px;
-  }
+	.previewIntro {
+		min-height: 250px;
+	}
 
-  .imageMosaic {
-    min-height: 420px;
-  }
+	.imageMosaic {
+		min-height: 420px;
+	}
 
-  .previewNote {
-    grid-column: auto;
-  }
+	.previewNote {
+		grid-column: auto;
+	}
 
-  .specGrid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
+	.specGrid {
+		grid-template-columns: 1fr;
+		gap: 28px;
+	}
 
-  .specGrid h3 {
-    margin-top: 13px;
-  }
+	.specGrid h3 {
+		margin-top: 13px;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .primaryAction {
-    transition: none;
-  }
+	.primaryAction {
+		transition: none;
+	}
 
-  .primaryAction:hover {
-    transform: none;
-  }
+	.primaryAction:hover {
+		transform: none;
+	}
 }

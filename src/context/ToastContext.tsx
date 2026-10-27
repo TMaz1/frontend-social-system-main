@@ -35,7 +35,7 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) =
                 const duplicate = prev.some(
                     (t) => typeof t.content === "string" && t.content === content
                 );
-                
+
                 if (duplicate) return prev;
             }
 

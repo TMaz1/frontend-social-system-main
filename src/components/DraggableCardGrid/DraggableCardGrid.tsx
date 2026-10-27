@@ -44,9 +44,9 @@ const DraggableCardGrid: React.FC<Props> = ({ userId, selectedCollection, isOwnP
     );
 
     const effectiveLayout = layout;
-const strategy = effectiveLayout === "masonry"
-    ? rectSortingStrategy
-    : rectSortingStrategy;
+    const strategy = effectiveLayout === "masonry"
+        ? rectSortingStrategy
+        : rectSortingStrategy;
     const canReorder = reorderMode && selectedCollection !== "uploaded";
 
     const { cards, reorderCards } = useUserCards({

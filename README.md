@@ -2,68 +2,9 @@
 
 An interactive frontend system that simulates a social platform UI with dynamic layouts and state-driven interactions.
 
-Live demo: https://TMaz1.github.io/frontend-social-system/\n\nThe landing page introduces the project; the visual feed lives at `#/explore`.
+Live site: The landing page introduces the project; the visual feed lives at `#/explore`.
 
 The project is built around a card-and-collection architecture to explore scalable UI patterns, state management, and layout complexity in a frontend-only environment (no backend integration).
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Colour Scheme
-
-- Primary background: `#070808` — Black
-- Secondary background: `#0D0F0F` — Asphalt
-- Card/panel background: `#141716` — Charcoal
-- Elevated surfaces: `#1D211F` — Smoke
-- Primary text: `#F1EDDA` — Cream
-- White text: `#FAF8ED`
-- Secondary text: `#B2B1A7` — Muted grey
-- Subtle text: `#898A82`
-- Primary accent: `#F0C52E` — Yellow
-- Bright accent: `#FFD94A` — Bright yellow
-- Secondary accent: `#6D9690` — Muted cyan
-- Additional accents: Red `#8C4B42`, green `#6FA58D`
-- Borders: Cream with 9–30% opacity
-
-## Typography
-
-- Heading font: Oswald
-- Body font: DM Mono
-- Monospace fallback: Courier New, monospace
-- Display font fallback: Impact, sans-serif
-- Font weights: 300 (Light), 400 (Regular), 500 (Medium)
-- Body text size: 14–16px
-- Small labels: 9–12px
-- Section headings: 32px
-- Hero headings: Fluid 56–108px
-- Large display titles: 120px
-
-## Layout and Design
-
-- Style: Dark, minimalist, technical and editorial
-- Spacing system: 4px–96px
-- Maximum container width: 1180px
-- Maximum content width: 780px
-- Header height: 65px
-- Container side padding: 24px
-- Border radius: 0px (sharp corners)
-- Shadows: None
-- Borders: Thin, subtle cream-coloured lines
-- Transitions: 180ms, 280ms and 700ms
-- Responsive breakpoints: 430px, 620px, 900px and 1200px
-
-
-
-
 
 ---
 
@@ -185,3 +126,15 @@ Open: http://localhost:5173/
 * Data is stored in **localStorage** (clearing it resets the app)
 * The project prioritises frontend system experimentation over backend implementation
 * Structure is intentionally flexible to support ongoing iteration
+
+
+
+
+- scss refactor/cleanup
+- browser routing
+
+- "share" app.com refactor feature
+- image zooming feature/lightbox
+- tags being searchable
+
+- social. subdomain deploy
