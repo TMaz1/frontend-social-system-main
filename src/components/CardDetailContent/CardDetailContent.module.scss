@@ -165,127 +165,6 @@
     pointer-events: none;
 }
 
-
-.lightbox {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-}
-
-.lightboxImage {
-    display: block;
-
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: calc(100dvh - 150px);
-
-    margin: 0 auto;
-
-    object-fit: contain;
-}
-
-.lightboxTitle {
-    margin: 0;
-
-    color: #fff;
-    font-family: $font-sans;
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.35;
-    letter-spacing: -0.02em;
-
-    overflow-wrap: anywhere;
-}
-
-.lightboxDetails {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-
-    min-width: 0;
-    padding: 18px 24px 0;
-}
-
-.lightboxDescriptionWrapper {
-    position: relative;
-    width: 100%;
-    max-width: 720px;
-    max-height: 2.25em;
-    overflow: hidden;
-}
-
-.lightboxDescriptionWrapper:not(.descriptionExpanded)::after {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 1.75em;
-    background: linear-gradient(to bottom,
-            transparent,
-            #171717);
-    content: "";
-    pointer-events: none;
-}
-
-.descriptionExpanded {
-    max-height: min(30vh, 240px);
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-
-    // Hide scrollbar but preserve scrolling
-    scrollbar-width: none; // Firefox
-    -ms-overflow-style: none; // Internet Explorer / legacy Edge
-
-    &::-webkit-scrollbar {
-        display: none; // Chrome, Safari, newer Edge
-    }
-}
-
-.lightboxDescription {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.68);
-    font-family: $font-sans;
-    font-size: 12px;
-    line-height: 1.75;
-    white-space: pre-line;
-    overflow-wrap: anywhere;
-}
-
-.descriptionToggle {
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-    align-self: flex-start;
-
-    margin: 2px 0 0;
-    padding: 6px 0;
-
-    border: 0;
-    background: transparent;
-    color: rgba(255, 255, 255, 0.9);
-
-    font-family: $font-sans;
-    font-size: 11px;
-    font-weight: 500;
-    cursor: pointer;
-
-    &:hover {
-        color: #fff;
-    }
-
-    &:focus-visible {
-        outline: 2px solid #fff;
-        outline-offset: 4px;
-    }
-}
-
 // ========================================
 // Information panel
 // ========================================
@@ -697,29 +576,6 @@
     margin-top: 28px;
 }
 
-@media (max-width: 600px) {
-    .lightboxImage {
-        max-height: calc(100dvh - 180px);
-    }
-
-    .lightboxTitle {
-        font-size: 15px;
-    }
-
-    .lightboxDetails {
-        padding: 14px 16px 0;
-    }
-
-    .lightboxDescription {
-        font-size: 11px;
-        line-height: 1.65;
-    }
-
-    .descriptionExpanded {
-        max-height: 30vh;
-    }
-}
-
 // ========================================
 // Reduced motion
 // ========================================
@@ -731,8 +587,7 @@
     .creatorArrow,
     .inlineLink,
     .tag,
-    .backLink,
-    .lightboxDescriptionWrapper {
+    .backLink {
         transition: none;
     }
 }

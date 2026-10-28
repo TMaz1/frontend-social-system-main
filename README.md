@@ -136,10 +136,7 @@ Open: http://localhost:5173/
 
 
 - browser routing
-
-- image modal (modal.tsx, modal.module.scss)
 - tags being searchable (search bar, search results, app.tsx)
-
 - fix draggable masonry bug
 
 - social. subdomain deploy

@@ -1,8 +1,10 @@
+
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Button.module.scss";
 import { useSaveCard } from "../../hooks/cards/useSaveCard";
 import { useToast } from "../../context/ToastContext";
+import { cardToasts } from "../../utils/cardToasts";
 import { useCurrentUsername } from "../../hooks/user/useCurrentUsername";
 
 interface Props {
@@ -14,44 +16,41 @@ export const SaveButton: React.FC<Props> = ({ cardId }) => {
         isSaved,
         toggleSave,
         isLoading,
-        isAuthenticated
+        isAuthenticated,
     } = useSaveCard(cardId);
 
     const { showToast } = useToast();
     const navigate = useNavigate();
-
     const username = useCurrentUsername();
 
     const handleClick = () => {
-        // Not logged in → redirect
         if (!isAuthenticated) {
-            showToast("Please log in to save cards");
+            cardToasts.loginRequired(showToast);
             navigate("/login");
             return;
         }
 
+        if (isLoading) return;
+
+        const wasSaved = isSaved;
+
         toggleSave();
 
-        // since toggleSave doesn't return anything, we infer next state manually
-        showToast(
-            <>
-                {isSaved
-                    ? "Card removed from 'Saved' collection"
-                    : "Card added to 'Saved' collection"} {" "}
-                <Link to={`/profile/${username}`}>
-                    View Profile
-                </Link>
-            </>
-        );
+        if (wasSaved) {
+            cardToasts.unsaved(showToast, username);
+        } else {
+            cardToasts.saved(showToast, username);
+        }
     };
 
     return (
         <button
             className={`${styles.saveBtn} ${isSaved ? styles.active : ""}`}
             onClick={handleClick}
+            disabled={isLoading}
         >
             {isLoading
-                ? "☆ Save" // neutral default to prevent flicker
+                ? "☆ Save"
                 : isSaved
                     ? "★ Saved"
                     : "☆ Save"}

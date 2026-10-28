@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./CardDetailContent.module.scss";
 import type { CardProps } from "../Card/Card";
 import { SaveButton } from "../Button/SaveButton";
 import { AddToCollectionButton } from "../Button/AddToCollectionButton";
 import { localDataService } from "../../services/localDataService";
-import Modal from "../Modal/Modal";
+import ImageLightbox from "../ImageLightbox/ImageLightbox";
 
 interface Props {
     card: CardProps;
@@ -13,13 +13,6 @@ interface Props {
 
 const CardDetailContent: React.FC<Props> = ({ card }) => {
     const [imageModalOpen, setImageModalOpen] = useState(false);
-    const [descriptionExpanded, setDescriptionExpanded] = useState(false);
-
-    useEffect(() => {
-        if (imageModalOpen) {
-            setDescriptionExpanded(false);
-        }
-    }, [imageModalOpen]);
 
     const user = useMemo(() => {
         return card ? localDataService.getUserById(card.userId) : undefined;
@@ -175,50 +168,12 @@ const CardDetailContent: React.FC<Props> = ({ card }) => {
             </article>
 
             {card.image && (
-                <Modal
+                <ImageLightbox
                     visible={imageModalOpen}
                     onClose={() => setImageModalOpen(false)}
-                    imageMode
-
-                    content={
-                        <div className={styles.lightbox}>
-                            <img
-                                src={card.image}
-                                alt={card.title}
-                                className={styles.lightboxImage}
-                            />
-
-                            <div className={styles.lightboxDetails}>
-                                <h2 className={styles.lightboxTitle}>
-                                    {card.title}
-                                </h2>
-
-                                {card.fullDescription && (
-                                    <div
-                                        className={`${styles.lightboxDescriptionWrapper} ${descriptionExpanded ? styles.descriptionExpanded : ""
-                                            }`}
-                                    >
-                                        <p className={styles.lightboxDescription}>
-                                            {card.fullDescription}
-                                        </p>
-                                    </div>
-                                )}
-
-                                {card.fullDescription && (
-                                    <button
-                                        type="button"
-                                        className={styles.descriptionToggle}
-                                        onClick={() =>
-                                            setDescriptionExpanded((expanded) => !expanded)
-                                        }
-                                        aria-expanded={descriptionExpanded}
-                                    >
-                                        {descriptionExpanded ? "Show less −" : "Read more +"}
-                                    </button>
-                                )}
-                            </div>
-                        </div>
-                    }
+                    image={card.image}
+                    title={card.title}
+                    description={card.fullDescription}
                 />
             )}
         </>

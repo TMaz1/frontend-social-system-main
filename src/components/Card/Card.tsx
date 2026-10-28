@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./Card.module.scss";
 
 export interface CardProps {
@@ -39,32 +38,37 @@ function timeAgo(dateString: string) {
 
     for (const [name, value] of Object.entries(units)) {
         const amount = Math.floor(seconds / value);
-        if (amount >= 1) return `${amount} ${name}${amount > 1 ? "s" : ""} ago`;
+        if (amount >= 1) {
+            return `${amount} ${name}${amount > 1 ? "s" : ""} ago`;
+        }
     }
 
     return "Just now";
 }
 
-const Card: React.FC<CardProps> = ({ id, title, image = "", imageWidth, imageHeight, createdAt, reorderMode }) => {
-    const navigate = useNavigate();
+const Card: React.FC<CardProps> = ({
+    title,
+    image = "",
+    imageWidth,
+    imageHeight,
+    createdAt,
+    reorderMode,
+}) => {
     const [loaded, setLoaded] = React.useState(false);
 
-    const aspectRatio = imageWidth && imageHeight ? `${imageWidth} / ${imageHeight}` : undefined;
-
-    const handleClick = () => {
-        if (!reorderMode) {
-            navigate(`/card/${id}`);
-        }
-    };
+    const aspectRatio =
+        imageWidth && imageHeight
+            ? `${imageWidth} / ${imageHeight}`
+            : undefined;
 
     return (
         <div
             className={`${styles.card} ${reorderMode ? styles.reorderMode : ""}`}
-            onClick={handleClick}
             role="button"
             tabIndex={0}
+            aria-label={`View card: ${title}`}
         >
-            {!image && <div className={styles.imagePlaceholder}></div>}
+            {!image && <div className={styles.imagePlaceholder} />}
 
             {image && (
                 <div
@@ -78,17 +82,15 @@ const Card: React.FC<CardProps> = ({ id, title, image = "", imageWidth, imageHei
                         />
                     )}
 
-                    {image ? (
-                        <img
-                            className={`${styles.image} ${loaded ? styles.loaded : ""}`}
-                            src={image || undefined}
-                            alt={title}
-                            loading="lazy"
-                            decoding="async"
-                            draggable={false}
-                            onLoad={() => setLoaded(true)}
-                        />
-                    ) : null}
+                    <img
+                        className={`${styles.image} ${loaded ? styles.loaded : ""}`}
+                        src={image}
+                        alt={title}
+                        loading="lazy"
+                        decoding="async"
+                        draggable={false}
+                        onLoad={() => setLoaded(true)}
+                    />
                 </div>
             )}
 

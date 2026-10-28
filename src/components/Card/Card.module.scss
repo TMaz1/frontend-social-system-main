@@ -138,16 +138,16 @@
 }
 
 .menu {
-	position: absolute;
-	background: $bg-surface-raised;
-	border: 1px solid $border-subtle;
-	box-shadow: 0 14px 40px rgba(0, 0, 0, .4);
-	border-radius: 10px;
+	position: fixed;
 	z-index: 9999;
 	display: flex;
 	flex-direction: column;
 	min-width: 160px;
 	padding: 6px;
+	background: $bg-surface-raised;
+	border: 1px solid $border-subtle;
+	border-radius: 10px;
+	box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
 }
 
 .menu.bottomMenu {
