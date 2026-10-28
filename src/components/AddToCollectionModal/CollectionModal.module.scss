@@ -1,4 +1,5 @@
 @use "../../styles/variables" as *;
+@use "sass:color";
 
 /* Shared modal content */
 
@@ -30,9 +31,9 @@
 .heading {
     margin: 0 0 8px;
 
-    font-family: "DM Serif Display", Georgia, serif;
+    font-family: $font-sans;
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.2;
     letter-spacing: -0.025em;
     color: $text-primary;
@@ -75,7 +76,7 @@
     background: rgba(255, 255, 255, 0.025);
     color: $text-primary;
     border: 1px solid $border-subtle;
-    border-radius: 10px;
+    border-radius: 6px;
 
     cursor: pointer;
 
@@ -137,7 +138,7 @@
     background: rgba(213, 255, 117, 0.07);
     color: $accent;
     border: 1px solid rgba(213, 255, 117, 0.22);
-    border-radius: 10px;
+    border-radius: 24px;
 
     font-family: $font-sans;
     font-size: 12px;
@@ -289,8 +290,8 @@
     border-color: $accent;
 
     &:hover:not(:disabled) {
-        background: lighten($accent, 4%);
-        border-color: lighten($accent, 4%);
+        background: color.adjust($accent, $lightness: 4%);
+        border-color: color.adjust($accent, $lightness: 4%);
     }
 }
 

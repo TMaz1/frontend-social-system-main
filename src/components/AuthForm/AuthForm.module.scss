@@ -20,7 +20,7 @@
     h2 {
         margin: 0 0 21px;
         color: $text-primary;
-        font-family: $font-serif;
+        font-family: $font-sans;
         font-size: clamp(28px, 5vw, 34px);
         font-weight: 500;
         line-height: 1.15;
@@ -241,7 +241,7 @@
         border-color: $accent;
         background: $accent;
         color: #14150f;
-        border-radius: 8px;
+        border-radius: 24px;
 
         &:hover:not(:disabled) {
             background: transparent;
@@ -253,7 +253,7 @@
         border: 1px solid $border-strong;
         background: transparent;
         color: $text-secondary;
-        border-radius: 8px;
+        border-radius: 24px;
 
         &:hover:not(:disabled) {
             border-color: $text-secondary;

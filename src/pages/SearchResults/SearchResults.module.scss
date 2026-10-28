@@ -1,18 +1,133 @@
 @use "../../styles/variables" as *;
 
 .page {
-    max-width: 1300px;
+    max-width: 1800px;
+    width: 100%;
+    box-sizing: border-box;
     margin: 0 auto;
+    min-height: 60vh;
+    padding: 64px var(--page-gutter) 100px;
 }
 
-.heading {
-    font-family: $font-sans;
-    font-size: 24px;
-    padding: 38px 18px;
+.header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px 0 38px;
 }
 
-.noResults {
+.headingContent {
+    min-width: 0;
+}
+
+.eyebrow {
+    color: $text-tertiary;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+}
+
+.headingContent h1 {
+    margin: 18px 0 21px;
+    color: $text-primary;
+    font-size: clamp(42px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.075em;
+    line-height: 0.98;
+    overflow-wrap: anywhere;
+}
+
+.period {
+    color: $accent;
+}
+
+.description {
+    margin: 0;
+    color: $text-secondary;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.count {
+    flex-shrink: 0;
+    padding-bottom: 4px;
+    color: $text-primary;
     font-size: 16px;
-    color: $grey-300;
-    padding: 24px;
+    white-space: nowrap;
+}
+
+.count small {
+    display: block;
+    margin-top: 5px;
+    color: $text-tertiary;
+    font-size: 10px;
+}
+
+.gridContainer {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.empty {
+    padding: 80px 24px;
+    border: 1px dashed $border-strong;
+    border-radius: $radius-premium;
+    text-align: center;
+    color: $text-secondary;
+}
+
+.emptyIcon {
+    margin-bottom: 18px;
+    color: $accent;
+    font-size: 22px;
+}
+
+.empty h2 {
+    margin: 0;
+    color: $text-primary;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+.empty p {
+    max-width: 360px;
+    margin: 10px auto 0;
+    color: $text-secondary;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+    .page {
+        padding-top: 36px;
+        padding-bottom: 60px;
+    }
+
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+        padding: 28px 0;
+    }
+
+    .headingContent h1 {
+        margin: 16px 0;
+        font-size: clamp(40px, 11vw, 56px);
+    }
+
+    .count {
+        font-size: 14px;
+    }
+
+    .empty {
+        padding: 56px 20px;
+    }
+
+    .empty h2 {
+        font-size: 18px;
+    }
 }

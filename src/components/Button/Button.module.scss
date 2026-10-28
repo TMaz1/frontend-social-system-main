@@ -1,4 +1,5 @@
 @use "../../styles/variables" as *;
+@use "sass:color";
 
 // ========================================
 // Shared button styling
@@ -15,7 +16,7 @@
     padding: 0 15px;
 
     border: 1px solid $border-strong;
-    border-radius: 8px;
+    border-radius: 24px;
 
     font-family: $font-sans;
     font-size: 12px;
@@ -83,7 +84,7 @@
 
 .addBtn {
     background: transparent;
-    color: $text-secondary;
+    color: $grey-100;
     border-color: $border-subtle;
 
     &:hover:not(:disabled) {
@@ -104,7 +105,6 @@
     margin-bottom: 20px;
 
     border: 1px solid transparent;
-    border-radius: 8px;
 
     background: transparent;
     color: $text-secondary;
@@ -156,9 +156,9 @@
         border-color 160ms ease,
         opacity 160ms ease;
 
-    &:hover {
-        background: lighten($accent, 4%);
-        border-color: lighten($accent, 4%);
+    &:hover:not(:disabled) {
+        background: color.adjust($accent, $lightness: 4%);
+        border-color: color.adjust($accent, $lightness: 4%);
     }
 
     &:focus-visible {

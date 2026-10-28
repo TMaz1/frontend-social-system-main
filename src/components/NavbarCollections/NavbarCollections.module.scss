@@ -1,59 +1,80 @@
 @use "../../styles/variables" as *;
 
-/* -------------------------------------------------------
-   SCROLLABLE TAB WRAPPER
-------------------------------------------------------- */
+
+@use "../../styles/variables" as *;
+
+/* Tabs row */
 .row {
     display: flex;
-    gap: 12px;
-    padding: 8px 4px;
-    white-space: nowrap;
     align-items: center;
+    gap: 24px;
+
+    width: max-content;
+    min-width: 100%;
+    padding: 0 2px;
+
+    white-space: nowrap;
 }
 
-/* -------------------------------------------------------
-   TAB STYLE
-------------------------------------------------------- */
+/* Individual tab */
 .tab {
-    padding: 10px 22px;
-    background: rgba(255, 255, 255, 0.045);
-    color: $text-secondary;
-    border-radius: 24px;
-    border: 1px solid $border-subtle;
+    position: relative;
 
-    font-family: $font-serif;
-    font-size: 13px;
-    font-weight: 300;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
+    min-height: 44px;
+    padding: 10px 1px;
+
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+
+    background: transparent;
+    color: $text-tertiary;
+
+    font-family: $font-sans;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    line-height: 1.4;
+
+    white-space: nowrap;
     cursor: pointer;
-    transition: all 0.2s ease;
-    scroll-snap-align: center;
 
-    &:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: $border-strong;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease;
+
+    &:hover:not(:disabled) {
         color: $text-primary;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $accent;
+        outline-offset: 3px;
+        border-radius: 2px;
+    }
+
+    &:disabled {
+        cursor: default;
     }
 }
 
+/* Selected tab */
 .active {
-    border-color: rgba(213, 255, 117, 0.35);
-    background: rgba(213, 255, 117, 0.1);
+    border-bottom-color: $accent;
     color: $text-primary;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    font-weight: 600;
 }
 
-/* -------------------------------------------------------
-   DRAGGING STATE
-------------------------------------------------------- */
+/* Drag-and-drop state */
 .dragging {
-    opacity: 0.5;
-    transform: scale(0.96);
+    opacity: 0.55;
+    cursor: grabbing;
 }
 
-/* -------------------------------------------------------
-   NAVBAR CONTAINER
-------------------------------------------------------- */
 .navbarWrapper {
     width: 100%;
     display: flex;
@@ -102,7 +123,7 @@
     z-index: 10000;
     background: $bg-surface-raised;
     border: 1px solid $border-subtle;
-    border-radius: 8px;
+    border-radius: 24px;
     padding: 8px 0;
     min-width: 180px;
     max-width: calc(100vw - 16px);
@@ -126,5 +147,24 @@
         &:hover {
             background: rgba(255, 255, 255, 0.06);
         }
+    }
+}
+
+@media (max-width: 600px) {
+    .row {
+        gap: 20px;
+    }
+
+    .tab {
+        min-height: 42px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        font-size: 11px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tab {
+        transition: none;
     }
 }

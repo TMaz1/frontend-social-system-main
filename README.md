@@ -2,7 +2,9 @@
 
 An interactive frontend system that simulates a social platform UI with dynamic layouts and state-driven interactions.
 
-Live site: The landing page introduces the project; the visual feed lives at `#/explore`.
+Live site: 
+
+The landing page introduces the project; the visual feed lives at `#/explore`.
 
 The project is built around a card-and-collection architecture to explore scalable UI patterns, state management, and layout complexity in a frontend-only environment (no backend integration).
 
@@ -29,6 +31,7 @@ The app currently functions as a **front-end prototype** where users can:
 
 * Create and update profiles
 * Add social links (website, Instagram, YouTube, Twitter, TikTok, etc.)
+* Share public profiles using the native Web Share API, with a clipboard fallback for unsupported browsers
 
 ### Cards (Posts)
 
@@ -64,12 +67,16 @@ The app currently functions as a **front-end prototype** where users can:
 
 A centralised abstraction for all data operations:
 
-* Cards: retrieval, filtering, ordering
-* Collections: CRUD + ordering
-* Users: creation, updates, lookup
-* User State: saved items, ordering, normalisation
+* **Cards**: retrieval, filtering, ordering
+* **Collections**: CRUD + ordering
+* **Users**: creation, updates, lookup
+* **User State**: saved items, ordering, normalisation
 
 This layer mimics a backend service to allow future integration without refactoring the UI.
+
+### Reusable Hooks
+
+* `useShare`: Encapsulates profile-sharing logic, using the native Web Share API where supported and falling back to clipboard copying when necessary. Keeps sharing behaviour separate from UI components, allowing the functionality to be reused across the application.
 
 ---
 
@@ -128,13 +135,11 @@ Open: http://localhost:5173/
 * Structure is intentionally flexible to support ongoing iteration
 
 
-
-
-- scss refactor/cleanup
 - browser routing
 
-- "share" app.com refactor feature
-- image zooming feature/lightbox
+- image modal
 - tags being searchable
+
+- fix draggable masonry bug
 
 - social. subdomain deploy

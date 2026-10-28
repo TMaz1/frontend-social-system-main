@@ -22,57 +22,72 @@ const ProfileHeader: React.FC<Props> = ({
     profileImage,
     links,
     share,
-    isOwnProfile
+    isOwnProfile,
 }) => {
     const [showModal, setShowModal] = useState(false);
 
-    const displayBio = bio?.trim() || "No bio yet.";
+    const displayName = name.trim() || "Untitled profile";
+    const hasBio = Boolean(bio?.trim());
 
     return (
         <>
             <header className={styles.header}>
                 <div className={styles.identity}>
-                    <ProfileAvatar
-                        src={profileImage || undefined}
-                        editable={isOwnProfile}
-                        editLink="/profile/settings"
-                    />
+                    <div className={styles.avatar}>
+                        <ProfileAvatar
+                            src={profileImage || undefined}
+                            editable={isOwnProfile}
+                            editLink="/profile/settings"
+                        />
+                    </div>
 
                     <div className={styles.text}>
                         <span className={styles.eyebrow}>
-                            {isOwnProfile ? "YOUR SPACE" : "PROFILE"}
+                            {isOwnProfile
+                                ? "YOUR SPACE"
+                                : "THE OPEN ARCHIVE"}
                         </span>
 
-                        <h1 className={styles.title}>{name}</h1>
+                        <h1 className={styles.title}>
+                            {displayName}
+                            <span className={styles.period}>.</span>
+                        </h1>
 
-                        <p className={`${styles.bio} ${!bio?.trim() ? styles.emptyBio : ""}`}>
-                            {displayBio}
+                        <p
+                            className={`${styles.bio} ${!hasBio ? styles.emptyBio : ""
+                                }`}
+                        >
+                            {hasBio
+                                ? bio.trim()
+                                : "A space for things worth discovering."}
                         </p>
                     </div>
                 </div>
 
                 <div className={styles.footer}>
-                    <div className={styles.buttons}>
-                        {isOwnProfile ? (
-                            <Link
-                                to="/profile/settings"
-                                className={styles.addBtn}
-                            >
-                                Edit Profile
-                            </Link>
-                        ) : (
-                            <button
-                                type="button"
-                                className={styles.addBtn}
-                                onClick={() => setShowModal(true)}
-                            >
-                                Follow
-                            </button>
-                        )}
-                    </div>
+                    {isOwnProfile ? (
+                        <Link
+                            to="/profile/settings"
+                            className={styles.primaryAction}
+                        >
+                            Edit profile
+                        </Link>
+                    ) : (
+                        <button
+                            type="button"
+                            className={styles.primaryAction}
+                            onClick={() => setShowModal(true)}
+                        >
+                            Follow
+                            <span aria-hidden="true">↗</span>
+                        </button>
+                    )}
 
                     <div className={styles.socials}>
-                        <SocialMediaLinks links={links} share={share} />
+                        <SocialMediaLinks
+                            links={links}
+                            share={share}
+                        />
                     </div>
                 </div>
             </header>

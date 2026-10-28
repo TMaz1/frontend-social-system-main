@@ -32,7 +32,7 @@
 .hero h1 em,
 .sectionHeading h2 em,
 .manifesto h2 em {
-	font-family: $font-serif;
+	font-family: $font-sans;
 	font-weight: 400;
 	letter-spacing: -.055em;
 }
@@ -368,7 +368,7 @@
 
 	.previewNote {
 		grid-column: 1 / -1;
-		min-height: 170px;
+		min-height: 140px;
 	}
 
 	.previewNote>svg {
@@ -376,7 +376,8 @@
 	}
 
 	.previewNote a {
-		padding-top: 18px;
+		padding-top: 0;
+		margin-top: 14px;
 	}
 
 	.manifesto {

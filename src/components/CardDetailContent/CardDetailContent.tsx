@@ -1,3 +1,4 @@
+
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import styles from "./CardDetailContent.module.scss";
@@ -11,94 +12,146 @@ interface Props {
 }
 
 const CardDetailContent: React.FC<Props> = ({ card }) => {
-
-    if (!card) return <div>Card not found</div>;
-
     const user = useMemo(() => {
-        return localDataService.getUserById(card.userId);
-    }, [card.userId]);
+        return card ? localDataService.getUserById(card.userId) : undefined;
+    }, [card]);
 
-    const uploadedBy = user
-        ? {
-            userId: user.userId,
-            username: user.username,
-            profileImageUrl: user.profileImageUrl,
-        }
-        : undefined;
+    if (!card) {
+        return (
+            <div className={styles.empty}>
+                <span className={styles.eyebrow}>THE OPEN ARCHIVE</span>
+                <h1 className={styles.emptyTitle}>Piece not found.</h1>
+                <p className={styles.emptyDescription}>
+                    This piece may have been removed or is no longer available.
+                </p>
+                <Link to="/explore" className={styles.backLink}>
+                    Back to explore <span aria-hidden="true">→</span>
+                </Link>
+            </div>
+        );
+    }
+
+    const publishedDate = new Date(card.createdAt);
+    const formattedDate = Number.isNaN(publishedDate.getTime())
+        ? null
+        : publishedDate.toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        });
 
     return (
-        <div className={styles.container}>
-
-            {/* IMAGE */}
-            <div className={styles.imageWrapper}>
-                <img
-                    src={card.image || undefined}
-                    alt={card.title}
-                    className={styles.image}
-                />
+        <article className={styles.container}>
+            <div className={styles.imageColumn}>
+                <div className={styles.imageWrapper}>
+                    {card.image ? (
+                        <img
+                            src={card.image}
+                            alt={card.title}
+                            className={styles.image}
+                        />
+                    ) : (
+                        <div className={styles.imagePlaceholder}>
+                            <span>No image available</span>
+                        </div>
+                    )}
+                </div>
             </div>
 
-            {/* INFO PANEL */}
             <div className={styles.info}>
+                <div className={styles.intro}>
+                    <span className={styles.eyebrow}>THE OPEN ARCHIVE</span>
 
-                {/* CREATOR */}
-                {uploadedBy && (
-                    <Link
-                        to={`/profile/${uploadedBy.username}`}
-                        className={styles.creator}
-                    >
-                        <img
-                            src={uploadedBy.profileImageUrl || undefined}
-                            alt={uploadedBy.username}
-                            className={styles.creatorAvatar}
-                        />
-                        <span className={styles.creatorName}>
-                            {uploadedBy.username}
-                        </span>
-                    </Link>
-                )}
+                    {user && (
+                        <Link
+                            to={`/profile/${user.username}`}
+                            className={styles.creator}
+                        >
+                            {user.profileImageUrl ? (
+                                <img
+                                    src={user.profileImageUrl}
+                                    alt=""
+                                    className={styles.creatorAvatar}
+                                />
+                            ) : (
+                                <span
+                                    className={styles.creatorAvatarFallback}
+                                    aria-hidden="true"
+                                >
+                                    {user.username.charAt(0).toUpperCase()}
+                                </span>
+                            )}
+
+                            <span className={styles.creatorDetails}>
+                                <span className={styles.creatorLabel}>
+                                    CONTRIBUTED BY
+                                </span>
+                                <span className={styles.creatorName}>
+                                    {user.username}
+                                </span>
+                            </span>
+
+                            <span
+                                className={styles.creatorArrow}
+                                aria-hidden="true"
+                            >
+                                ↗
+                            </span>
+                        </Link>
+                    )}
+                </div>
 
                 <h1 className={styles.title}>{card.title}</h1>
 
-                <p className={styles.description}>
-                    {card.fullDescription}
+                {card.fullDescription && (
+                    <div className={styles.description}>
+                        <p>{card.fullDescription}</p>
 
-                    {/* Inline link (editorial style) */}
-                    {card.link && (
-                        <>
-                            {" "}
+                        {card.link && (
                             <a
                                 href={card.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.inlineLink}
                             >
-                                Visit →
+                                Visit original source
+                                <span aria-hidden="true">↗</span>
                             </a>
-                        </>
-                    )}
-                </p>
+                        )}
+                    </div>
+                )}
+
+                {card.hashtags && card.hashtags.length > 0 && (
+                    <div className={styles.hashtags}>
+                        <div className={styles.tagList}>
+                            {card.hashtags.map((tag) => (
+                                <span key={tag} className={styles.tag}>
+                                    #{tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 <div className={styles.meta}>
-                    <span className={styles.metaLabel}>Published:</span>
+                    <span className={styles.metaLabel}>PUBLISHED</span>
                     <span className={styles.metaValue}>
-                        {new Date(card.createdAt).toLocaleDateString()}
+                        {formattedDate ?? "Date unavailable"}
                     </span>
                 </div>
 
-                <div className={styles.hashtags}>
-                    {card.hashtags?.map((tag) => (
-                        <span key={tag} className={styles.tag}>#{tag}</span>
-                    ))}
-                </div>
+                <div className={styles.actions}>
+                    <span className={styles.sectionLabel}>
+                        Keep this piece
+                    </span>
 
-                <div className={styles.actionsRow}>
-                    <SaveButton cardId={card.id} />
-                    <AddToCollectionButton cardId={card.id} />
+                    <div className={styles.actionsRow}>
+                        <SaveButton cardId={card.id} />
+                        <AddToCollectionButton cardId={card.id} />
+                    </div>
                 </div>
-
             </div>
-        </div>
+        </article>
     );
 };
 

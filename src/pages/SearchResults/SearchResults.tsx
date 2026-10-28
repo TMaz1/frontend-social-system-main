@@ -6,6 +6,7 @@ import Card from "../../components/Card/Card";
 import NoSearch from "../../components/EmptyStates/NoSearch";
 import styles from "./SearchResults.module.scss";
 import type { CardProps } from "../../components/Card/Card";
+import { FiSearch } from "react-icons/fi";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -54,22 +55,57 @@ const SearchResults: React.FC = () => {
         return [...exactTitle, ...partialTitle, ...descMatches, ...hashtagMatches];
     }, [cards, query]);
 
+
     return (
-        <div className={styles.page}>
-            <h2 className={styles.heading}>
-                {results.length} result{results.length !== 1 ? "s" : ""} for "{query}"
-            </h2>
+        <main className={styles.page}>
+            <header className={styles.header}>
+                <div className={styles.headingContent}>
+                    <span className={styles.eyebrow}>
+                        THE OPEN ARCHIVE
+                    </span>
+
+                    <h1>
+                        Search results<span className={styles.period}>.</span>
+                    </h1>
+
+                    <p className={styles.description}>
+                        {results.length > 0
+                            ? `Things to discover matching "${query}".`
+                            : `Nothing to surface for "${query}".`}
+                    </p>
+                </div>
+
+                <span className={styles.count}>
+                    {String(results.length).padStart(2, "0")}
+                    <small>
+                        {results.length === 1
+                            ? "piece found"
+                            : "pieces found"}
+                    </small>
+                </span>
+            </header>
 
             {results.length > 0 ? (
-                <CardGrid>
-                    {results.map((card) => (
-                        <Card key={card.id} {...card} />
-                    ))}
-                </CardGrid>
+                <div className={styles.gridContainer}>
+                    <CardGrid>
+                        {results.map((card) => (
+                            <Card key={card.id} {...card} />
+                        ))}
+                    </CardGrid>
+                </div>
             ) : (
-                <p className={styles.noResults}>No cards found for "{query}".</p>
+                <div className={styles.empty}>
+                    <FiSearch className={styles.emptyIcon} />
+
+                    <h2>No matches this time.</h2>
+
+                    <p>
+                        Try another phrase, or search for a title,
+                        description, or hashtag.
+                    </p>
+                </div>
             )}
-        </div>
+        </main>
     );
 };
 
