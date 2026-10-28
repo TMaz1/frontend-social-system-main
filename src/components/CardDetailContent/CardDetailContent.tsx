@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./CardDetailContent.module.scss";
 import type { CardProps } from "../Card/Card";
 import { SaveButton } from "../Button/SaveButton";
@@ -12,11 +12,21 @@ interface Props {
 }
 
 const CardDetailContent: React.FC<Props> = ({ card }) => {
+    const navigate = useNavigate();
+
     const [imageModalOpen, setImageModalOpen] = useState(false);
 
     const user = useMemo(() => {
         return card ? localDataService.getUserById(card.userId) : undefined;
     }, [card]);
+
+    const handleTagClick = (tag: string) => {
+        const normalizedTag = tag.replace(/^#/, "").trim();
+
+        if (!normalizedTag) return;
+
+        navigate(`/search?q=${encodeURIComponent(normalizedTag)}`)
+    }
 
     if (!card) {
         return (
@@ -139,14 +149,20 @@ const CardDetailContent: React.FC<Props> = ({ card }) => {
                         <div className={styles.hashtags}>
                             <div className={styles.tagList}>
                                 {card.hashtags.map((tag) => (
-                                    <span key={tag} className={styles.tag}>
-                                        #{tag}
-                                    </span>
+                                    <button
+                                        key={tag}
+                                        type="button"
+                                        className={styles.tag}
+                                        onClick={() => handleTagClick(tag)}
+                                        aria-label={`Search for hashtag ${tag}`}
+                                    >
+                                        #{tag.replace(/^#/, "")}
+                                    </button>
                                 ))}
                             </div>
                         </div>
                     )}
-
+                    
                     <div className={styles.meta}>
                         <span className={styles.metaLabel}>PUBLISHED</span>
                         <span className={styles.metaValue}>

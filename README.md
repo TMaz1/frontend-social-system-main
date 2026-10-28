@@ -138,5 +138,6 @@ Open: http://localhost:5173/
 - browser routing
 - tags being searchable (search bar, search results, app.tsx)
 - fix draggable masonry bug
+- masonry 3 column instead of 4 (?)
 
 - social. subdomain deploy

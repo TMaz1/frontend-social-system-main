@@ -410,6 +410,7 @@
     max-width: 100%;
     padding: 6px 10px;
 
+    background: $bg-surface-raised;
     border: 1px solid $border-subtle;
     border-radius: 999px;
 
@@ -418,6 +419,7 @@
     font-size: 10px;
     font-weight: 500;
     line-height: 1.4;
+    cursor: pointer;
 
     overflow-wrap: anywhere;
 
@@ -428,7 +430,6 @@
 
     &:hover {
         border-color: $border-strong;
-        background: $bg-surface-raised;
         color: $text-primary;
     }
 }

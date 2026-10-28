@@ -15,6 +15,7 @@ export interface CardProps {
     collectionIds?: string[];
     createdAt: string;
     reorderMode?: boolean;
+    masonryMode?: boolean;
 
     uploadedBy?: {
         userId: string;
@@ -53,6 +54,7 @@ const Card: React.FC<CardProps> = ({
     imageHeight,
     createdAt,
     reorderMode,
+    masonryMode,
 }) => {
     const [loaded, setLoaded] = React.useState(false);
 
@@ -63,7 +65,8 @@ const Card: React.FC<CardProps> = ({
 
     return (
         <div
-            className={`${styles.card} ${reorderMode ? styles.reorderMode : ""}`}
+            className={`${styles.card} ${reorderMode ? styles.reorderMode : ""
+                } ${masonryMode ? styles.masonryCard : ""}`}
             role="button"
             tabIndex={0}
             aria-label={`View card: ${title}`}

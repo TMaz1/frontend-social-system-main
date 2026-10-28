@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useCardContext } from "../../context/CardContext";
 import CardGrid from "../../components/CardGrid/CardGrid";
@@ -13,6 +14,8 @@ function useQuery() {
 }
 
 const SearchResults: React.FC = () => {
+    const navigate = useNavigate();
+
     const { cards } = useCardContext();
     const query = useQuery().get("q")?.toLowerCase() || "";
 
@@ -55,6 +58,9 @@ const SearchResults: React.FC = () => {
         return [...exactTitle, ...partialTitle, ...descMatches, ...hashtagMatches];
     }, [cards, query]);
 
+    const handleClick = (cardId: CardProps["id"]) => {
+        navigate(`/card/${cardId}`);
+    };
 
     return (
         <main className={styles.page}>
@@ -89,7 +95,13 @@ const SearchResults: React.FC = () => {
                 <div className={styles.gridContainer}>
                     <CardGrid>
                         {results.map((card) => (
-                            <Card key={card.id} {...card} />
+                            <div
+                                key={card.id}
+                                onClick={() => handleClick(card.id)}
+                                className={styles.cardWrapper}
+                            >
+                                <Card {...card} />
+                            </div>
                         ))}
                     </CardGrid>
                 </div>

@@ -71,6 +71,12 @@
     box-sizing: border-box;
 }
 
+.cardWrapper {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
 .empty {
     padding: 80px 24px;
     border: 1px dashed $border-strong;
