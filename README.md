@@ -137,8 +137,8 @@ Open: http://localhost:5173/
 
 - browser routing
 
-- image modal
-- tags being searchable
+- image modal (modal.tsx, modal.module.scss)
+- tags being searchable (search bar, search results, app.tsx)
 
 - fix draggable masonry bug
 

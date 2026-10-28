@@ -181,6 +181,152 @@
     }
 }
 
+
+.imageOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    padding: 24px;
+    overflow-y: auto;
+
+    background: rgba(8, 8, 8, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    animation: imageOverlayIn 180ms ease-out;
+}
+
+.imageModal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    width: fit-content;
+    max-width: min(1100px, 100%);
+    max-height: calc(100dvh - 48px);
+    overflow: hidden;
+
+    margin: auto;
+    padding: 0 0 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+
+    background: #171717;
+    color: #fff;
+
+    box-shadow: 0 24px 100px rgba(0, 0, 0, 0.5);
+
+    animation: imageModalIn 220ms ease-out;
+}
+
+.imageModal .imageContent {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+
+    // Hide scrollbar but keep scrolling
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.imageClose {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+
+    display: grid;
+    place-items: center;
+
+    width: 38px;
+    height: 38px;
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+
+    background: rgba(15, 15, 15, 0.72);
+    color: #fff;
+
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition:
+        background 160ms ease,
+        transform 160ms ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.18);
+        transform: scale(1.05);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+    }
+}
+
+@keyframes imageOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes imageModalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.975) translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .imageOverlay,
+    .imageModal {
+        animation: none;
+    }
+
+    .imageClose {
+        transition: none;
+    }
+}
+
 // ========================================
 // Footer actions
 // ========================================
@@ -342,6 +488,27 @@
         max-height: 88vh;
         padding: 23px 19px;
         border-radius: 12px;
+    }
+
+    .imageOverlay {
+        padding: 12px;
+    }
+
+    .imageModal {
+        width: 100%;
+        max-width: 100%;
+        max-height: calc(100dvh - 24px);
+        padding: 0 0 16px;
+        border-radius: 8px;
+    }
+
+    .imageModal .imageContent {
+        max-height: calc(100dvh - 110px);
+    }
+
+    .imageClose {
+        top: 10px;
+        right: 10px;
     }
 
     .noBottomSpacing {
