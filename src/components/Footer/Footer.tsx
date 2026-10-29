@@ -76,22 +76,22 @@ const Footer: React.FC = () => {
                             <h3>Elsewhere</h3>
 
                             <a
-                                href="https://instagram.com"
+                                href="https://www.linkedin.com/in/tayyaba-maz/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                Instagram
+                                LinkedIn
                             </a>
 
                             <a
-                                href="https://twitter.com"
+                                href="https://github.com/tmaz1"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                Twitter
+                                Github
                             </a>
 
-                            <a href="mailto:contact@example.com">
+                            <a href="mailto:tayyabamazhar001@gmail.com">
                                 Get in touch
                             </a>
                         </section>

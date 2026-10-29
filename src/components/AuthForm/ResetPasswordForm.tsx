@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import styles from "./AuthForm.module.scss";
 import { useToast } from "../../context/ToastContext";
@@ -23,91 +24,124 @@ const ResetPasswordForm: React.FC<Props> = ({ onClose }) => {
     const [saving, setSaving] = useState(false);
 
     const { showToast } = useToast();
-
     const result = useUpdatePassword();
     const username = useCurrentUsername();
 
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-    const handleSubmit = () => {
-        if (result.status !== AuthStatus.Ready) return;
+        if (saving || result.status !== AuthStatus.Ready) return;
 
         setSaving(true);
 
-        const res = result.data.updatePassword({
-            oldPassword,
-            newPassword,
-            confirmPassword,
-        });
+        try {
+            const res = await result.data.updatePassword({
+                oldPassword,
+                newPassword,
+                confirmPassword,
+            });
 
-        if (!res.success) {
-            showToast(`${res.error} Please try again.` || "Something went wrong.");
+            if (!res.success) {
+                showToast(
+                    `${res.error || "Something went wrong."} Please try again.`
+                );
+                return;
+            }
+
+            setOldPassword("");
+            setNewPassword("");
+            setConfirmPassword("");
+
+            onClose();
+
+            showToast(
+                <>
+                    Password updated successfully!{" "}
+                    <Link to={`/profile/${username}`}>
+                        View Profile
+                    </Link>
+                </>
+            );
+        } catch {
+            showToast(
+                "Unable to update your password. Please try again."
+            );
+        } finally {
             setSaving(false);
-            return;
         }
-
-        showToast(
-            <>
-                Password updated successfully!{" "}
-                <Link to={`/profile/${username}`}>
-                    View Profile
-                </Link>
-            </>
-        );
-
-        setOldPassword("");
-        setNewPassword("");
-        setConfirmPassword("");
-
-        onClose();
-        setSaving(false);
     };
 
     return (
-        <div className={`${styles.authContainer} ${styles.modalAuthContainer}`}>
-            <div className={styles.authForm}>
-                <PasswordInput
-                    label="Old password"
-                    value={oldPassword}
-                    onChange={setOldPassword}
-                    show={showOld}
-                    onToggle={() => setShowOld((prev) => !prev)}
-                />
+        <div className={styles.resetPasswordContainer}>
+            <div className={styles.resetPasswordHeader}>
+                <p>Choose a new password to keep your account secure.</p>
+            </div>
 
-                <PasswordInput
-                    label="New password"
-                    value={newPassword}
-                    onChange={setNewPassword}
-                    show={showNew}
-                    onToggle={() => setShowNew((prev) => !prev)}
-                />
+            <form
+                className={styles.resetPasswordForm}
+                onSubmit={handleSubmit}
+            >
+                <div className={styles.resetPasswordInputGroup}>
+                    <label htmlFor="reset-old-password">
+                        Old password
+                    </label>
+                    <PasswordInput
+                        id="reset-old-password"
+                        label="Old password"
+                        value={oldPassword}
+                        onChange={setOldPassword}
+                        show={showOld}
+                        onToggle={() => setShowOld((prev) => !prev)}
+                    />
+                </div>
 
-                <PasswordInput
-                    label="Confirm new password"
-                    value={confirmPassword}
-                    onChange={setConfirmPassword}
-                    show={showConfirm}
-                    onToggle={() => setShowConfirm((prev) => !prev)}
-                />
+                <div className={styles.resetPasswordInputGroup}>
+                    <label htmlFor="reset-new-password">
+                        New password
+                    </label>
+                    <PasswordInput
+                        id="reset-new-password"
+                        label="New password"
+                        value={newPassword}
+                        onChange={setNewPassword}
+                        show={showNew}
+                        onToggle={() => setShowNew((prev) => !prev)}
+                    />
+                </div>
 
-                <div className={styles.buttonRow}>
+                <div className={styles.resetPasswordInputGroup}>
+                    <label htmlFor="reset-confirm-password">
+                        Confirm new password
+                    </label>
+                    <PasswordInput
+                        id="reset-confirm-password"
+                        label="Confirm new password"
+                        value={confirmPassword}
+                        onChange={setConfirmPassword}
+                        show={showConfirm}
+                        onToggle={() => setShowConfirm((prev) => !prev)}
+                    />
+                </div>
+
+                <div className={styles.resetPasswordButtonRow}>
                     <button
                         type="button"
-                        className={styles.cancelBtn}
+                        className={styles.resetPasswordCancel}
                         onClick={onClose}
+                        disabled={saving}
                     >
                         Cancel
                     </button>
 
                     <button
-                        type="button"
-                        className={styles.confirmBtn}
-                        disabled={saving}
-                        onClick={handleSubmit}
+                        type="submit"
+                        className={styles.resetPasswordConfirm}
+                        disabled={saving || result.status !== AuthStatus.Ready}
                     >
                         {saving ? "Saving..." : "Update Password"}
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };

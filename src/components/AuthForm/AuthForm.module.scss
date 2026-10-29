@@ -79,7 +79,7 @@
         padding: 13px 15px;
 
         border: 1px solid $border-subtle;
-        border-radius: 10px;
+        border-radius: 24px;
 
         background: $bg-surface-raised;
         color: $text-primary;
@@ -147,8 +147,9 @@
             align-items: center;
             justify-content: center;
 
-            color: $text-tertiary;
             font-size: 19px;
+            background: transparent;
+            border: 1px transparent;
 
             cursor: pointer;
             transition: color 180ms ease;
@@ -218,48 +219,6 @@
             box-shadow: none;
         }
     }
-
-    // ======================================
-    // Secondary form actions
-    // ======================================
-
-    .buttonRow {
-        display: flex;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 12px;
-
-        button {
-            width: auto;
-            min-height: 40px;
-            padding: 10px 16px;
-        }
-    }
-
-    .confirmBtn {
-        border-color: $accent;
-        background: $accent;
-        color: #14150f;
-        border-radius: 24px;
-
-        &:hover:not(:disabled) {
-            background: transparent;
-            color: $accent;
-        }
-    }
-
-    .cancelBtn {
-        border: 1px solid $border-strong;
-        background: transparent;
-        color: $text-secondary;
-        border-radius: 24px;
-
-        &:hover:not(:disabled) {
-            border-color: $text-secondary;
-            color: $text-primary;
-        }
-    }
 }
 
 // ========================================
@@ -314,6 +273,247 @@
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(8px);
 }
+
+
+
+/* ========================================
+   Reset password modal
+   ======================================== */
+
+.resetPasswordContainer {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 4px 0 0;
+
+    color: $text-primary;
+    font-family: $font-sans;
+}
+
+.resetPasswordHeader {
+    margin-bottom: 22px;
+
+    p {
+        margin: 0 auto;
+        max-width: 320px;
+
+        color: $text-secondary;
+        font-size: 12px;
+        line-height: 1.7;
+        text-align: center;
+    }
+}
+
+.resetPasswordForm {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+
+    .passwordWrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        input {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            min-width: 0;
+            min-height: 44px;
+            padding: 11px 46px 11px 14px;
+
+            border: 1px solid $border-strong;
+            border-radius: 24px;
+
+            background: $bg-surface;
+            color: $text-primary;
+
+            font-family: $font-sans;
+            font-size: 13px;
+            line-height: 1.6;
+
+            transition:
+                border-color 160ms ease,
+                background-color 160ms ease,
+                box-shadow 160ms ease;
+
+            &::placeholder {
+                color: $text-tertiary;
+                opacity: 1;
+            }
+
+            &:hover:not(:disabled) {
+                border-color: $text-tertiary;
+            }
+
+            &:focus {
+                border-color: $accent;
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(213, 255, 117, 0.08);
+            }
+
+            &:disabled {
+                opacity: 0.55;
+                cursor: not-allowed;
+            }
+        }
+
+        .hideIcon {
+            position: absolute;
+            right: 10px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 30px;
+            height: 30px;
+            padding: 0;
+
+            border: 0;
+            background: transparent;
+            color: $text-tertiary;
+
+            cursor: pointer;
+            transition: color 160ms ease;
+
+            svg {
+                width: 17px;
+                height: 17px;
+                stroke-width: 1.5;
+            }
+
+            &:hover {
+                color: $text-primary;
+            }
+
+            &:focus-visible {
+                outline: 2px solid $accent;
+                outline-offset: 1px;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
+.resetPasswordInputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+
+    >label {
+        color: $text-secondary;
+        font-family: $font-sans;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.5;
+        margin-bottom: 0;
+    }
+}
+
+.resetPasswordButtonRow {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+
+    button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 42px;
+        padding: 10px 16px;
+
+        border-radius: 24px;
+
+        font-family: $font-sans;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.4;
+
+        cursor: pointer;
+        transition:
+            background-color 160ms ease,
+            border-color 160ms ease,
+            color 160ms ease,
+            transform 160ms ease;
+
+        &:focus-visible {
+            outline: 2px solid $accent;
+            outline-offset: 3px;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.99);
+        }
+    }
+
+    .resetPasswordCancel {
+        border: 1px solid $border-strong;
+        background: transparent;
+        color: $text-secondary;
+
+        &:hover:not(:disabled) {
+            border-color: $text-secondary;
+            color: $text-primary;
+        }
+    }
+
+    .resetPasswordConfirm {
+        border: 1px solid $accent;
+        background: $accent;
+        color: #171910;
+
+        &:hover:not(:disabled) {
+            background: transparent;
+            color: $accent;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .resetPasswordContainer {
+        padding-top: 2px;
+    }
+
+    .resetPasswordHeader {
+        margin-bottom: 18px;
+    }
+
+    .resetPasswordForm {
+        gap: 15px;
+
+        .passwordWrapper input {
+            min-height: 44px;
+            font-size: 13px;
+        }
+    }
+
+    .resetPasswordButtonRow button {
+        min-height: 40px;
+        padding: 9px 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .resetPasswordForm input,
+    .resetPasswordForm .hideIcon,
+    .resetPasswordButtonRow button {
+        transition: none;
+    }
+}
+
 
 // ========================================
 // Responsive
