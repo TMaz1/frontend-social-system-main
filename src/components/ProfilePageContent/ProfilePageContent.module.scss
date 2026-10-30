@@ -12,6 +12,22 @@
     position: relative;
 }
 
+.contentToolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 14px;
+}
+
+.layoutControl {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
 .navbarRow {
     width: 100%;
     overflow-x: auto;

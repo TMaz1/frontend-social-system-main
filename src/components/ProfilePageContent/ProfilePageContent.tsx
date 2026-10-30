@@ -15,6 +15,7 @@ import { useReorderContext } from "../../context/ReorderContext";
 import { useUserCollections } from "../../hooks/collections/useUserCollections";
 import InlineLoader from "../Loader/InlineLoader/InlineLoader";
 import DeleteCollectionModal from "../DeleteCollectionModal/DeleteCollectionModal";
+import LayoutSwitcher from "../LayoutSwitcher/LayoutSwitcher";
 
 interface Props {
     user: User;
@@ -159,6 +160,15 @@ const ProfilePageContent: React.FC<Props> = ({
                 <InlineLoader />
             ) : (
                 <>
+                    <div className={styles.contentToolbar}>
+                        <div
+                            className={styles.layoutControl}
+                            aria-label="Choose content layout"
+                        >
+                            <LayoutSwitcher />
+                        </div>
+                    </div>
+
                     <div className={styles.navbarRow}>
                         <NavbarCollections
                             selected={selectedCollection}

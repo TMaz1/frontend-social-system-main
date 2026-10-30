@@ -6,6 +6,7 @@ import type { Links } from "../../services/localDataService";
 import { Link } from "react-router-dom";
 import ComingSoonModal from "../EmptyStates/ComingSoonModal";
 import ProfileAvatar from "../ProfileAvatar/ProfileAvatar";
+import { FiArrowUpRight } from "react-icons/fi";
 
 interface Props {
     name: string;
@@ -79,7 +80,7 @@ const ProfileHeader: React.FC<Props> = ({
                             onClick={() => setShowModal(true)}
                         >
                             Follow
-                            <span aria-hidden="true">↗</span>
+                            <FiArrowUpRight aria-hidden="true" />
                         </button>
                     )}
 

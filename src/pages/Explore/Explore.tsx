@@ -3,6 +3,7 @@ import CardGrid from "../../components/CardGrid/CardGrid";
 import { useCardContext } from "../../context/CardContext";
 import HomeCard from "../../components/Card/HomeCard";
 import styles from "./Explore.module.scss";
+import LayoutSwitcher from "../../components/LayoutSwitcher/LayoutSwitcher";
 
 const Explore: React.FC = () => {
     const { cards } = useCardContext();
@@ -17,6 +18,14 @@ const Explore: React.FC = () => {
                 </div>
                 <span className={styles.count}>{String(cards.length).padStart(2, "0")} <small>pieces to discover</small></span>
             </header>
+
+            <div
+                className={styles.layoutToolbar}
+                aria-label="Choose content layout"
+            >
+                <LayoutSwitcher />
+            </div>
+
             {cards.length ? (
                 <CardGrid>
                     {cards.map((card) => <HomeCard key={card.id} {...card} />)}

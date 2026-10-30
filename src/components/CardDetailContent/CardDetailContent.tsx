@@ -6,6 +6,7 @@ import { SaveButton } from "../Button/SaveButton";
 import { AddToCollectionButton } from "../Button/AddToCollectionButton";
 import { localDataService } from "../../services/localDataService";
 import ImageLightbox from "../ImageLightbox/ImageLightbox";
+import { FiArrowUpRight } from "react-icons/fi";
 
 interface Props {
     card: CardProps;
@@ -115,12 +116,8 @@ const CardDetailContent: React.FC<Props> = ({ card }) => {
                                     </span>
                                 </span>
 
-                                <span
-                                    className={styles.creatorArrow}
-                                    aria-hidden="true"
-                                >
-                                    ↗
-                                </span>
+                                <FiArrowUpRight className={styles.creatorArrow} aria-hidden="true" />
+
                             </Link>
                         )}
                     </div>
@@ -139,7 +136,7 @@ const CardDetailContent: React.FC<Props> = ({ card }) => {
                                     className={styles.inlineLink}
                                 >
                                     Visit original source
-                                    <span aria-hidden="true">↗</span>
+                                    <FiArrowUpRight aria-hidden="true" />
                                 </a>
                             )}
                         </div>
@@ -162,7 +159,7 @@ const CardDetailContent: React.FC<Props> = ({ card }) => {
                             </div>
                         </div>
                     )}
-                    
+
                     <div className={styles.meta}>
                         <span className={styles.metaLabel}>PUBLISHED</span>
                         <span className={styles.metaValue}>

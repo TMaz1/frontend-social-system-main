@@ -69,7 +69,6 @@ const Navbar: React.FC = () => {
                 </div>
 
                 <div className={styles.right}>
-                    {showLayout && !isMobile && <div className={styles.layoutControl} aria-label="Choose content layout"><LayoutSwitcher /></div>}
                     {!isMobile && <div className={styles.searchContainer}><SearchBar mobile={false} /></div>}
                     {isMobile && <button type="button" className={styles.iconButton} aria-label="Open search" onClick={() => setMobileSearch(true)}><FiSearch /></button>}
                     <div className={styles.profileWrapper} ref={dropdownRef}>

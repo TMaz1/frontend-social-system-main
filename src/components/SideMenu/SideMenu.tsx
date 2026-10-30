@@ -32,7 +32,6 @@ const SideMenu: React.FC<Props> = ({ open, onClose }) => {
                     <Link to={ROUTES.EXPLORE} onClick={onClose}>Explore</Link>
                     <Link to={ROUTES.SEARCH} onClick={onClose}>Search</Link>
                 </nav>
-                {showLayout && <div className={styles.section}><div className={styles.sectionLabel}>Layout</div><LayoutSwitcher /></div>}
             </aside>
         </div>
     );

@@ -8,6 +8,7 @@ import NoSearch from "../../components/EmptyStates/NoSearch";
 import styles from "./SearchResults.module.scss";
 import type { CardProps } from "../../components/Card/Card";
 import { FiSearch } from "react-icons/fi";
+import LayoutSwitcher from "../../components/LayoutSwitcher/LayoutSwitcher";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -90,6 +91,15 @@ const SearchResults: React.FC = () => {
                     </small>
                 </span>
             </header>
+
+            {results.length > 0 && (
+                <div
+                    className={styles.layoutToolbar}
+                    aria-label="Choose content layout"
+                >
+                    <LayoutSwitcher />
+                </div>
+            )}
 
             {results.length > 0 ? (
                 <div className={styles.gridContainer}>
